@@ -1,0 +1,16 @@
+# MS-Lighting website (Next.js).
+# The CMS API + Postgres + S3 are provided separately (alburhancms).
+# Public NEXT_PUBLIC_* values are baked at build time — set them in .env.
+services:
+  web:
+    build:
+      context: ./web
+      args:
+        NEXT_PUBLIC_CMS_URL: ${NEXT_PUBLIC_CMS_URL:-http://13.60.4.75:8002}
+        NEXT_PUBLIC_S3_BASE_URL: ${NEXT_PUBLIC_S3_BASE_URL:-https://alburhan-asset.s3.eu-north-1.amazonaws.com}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://www.mslighting.com}
+    image: ms-lighting-web:latest
+    container_name: ms-lighting-web
+    ports:
+      - "3001:3001"
+    restart: unless-stopped

@@ -216,3 +216,37 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ============================================================
+# Node / Next.js (web app)
+# ============================================================
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+out/
+*.tsbuildinfo
+.env.local
+.env*.local
+npm-debug.log*
+
+# ============================================================
+# Large source data — rendered/derived images live on S3, not git
+# ============================================================
+Catalog.pdf
+extract/png/
+extract/web/
+extract/cut/
+extract/sheets/
+extract/cut_review.png
+extract/test_*
+
+# Prototype / scratch
+mockup/
+
+# Admin frontend is its own git repo (push to its own remote)
+admin-ref/
+
+# OS
+.DS_Store
+Thumbs.db
