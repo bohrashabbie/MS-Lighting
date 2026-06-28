@@ -1,8 +1,22 @@
 import type { Metadata } from "next";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Ambience from "@/components/Ambience";
 import { SITE_URL } from "@/lib/api";
+
+// Editorial display grotesque + clean neutral body — light, modern, gallery feel.
+const display = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--display",
+  display: "swap",
+});
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -49,8 +63,16 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+      <head>
+        <noscript>
+          {/* Without JS the reveal observer never runs — show everything. */}
+          <style>{`.reveal{opacity:1!important;transform:none!important;filter:none!important}`}</style>
+        </noscript>
+      </head>
       <body>
+        <div className="grain" aria-hidden />
+        <Ambience />
         <Header />
         <main>{children}</main>
         <Footer />
