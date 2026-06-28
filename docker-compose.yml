@@ -12,5 +12,5 @@ services:
     image: ms-lighting-web:latest
     container_name: ms-lighting-web
     ports:
-      - "3001:3001"
+      - "5001:3001"
     restart: unless-stopped

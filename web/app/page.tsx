@@ -50,12 +50,21 @@ export default async function HomePage() {
             <div className="scroll-cue reveal"><i />Scroll to begin</div>
           </div>
 
-          {heroImg && (
-            <div className="stage reveal">
-              <span className="tag">Featured</span>
+          <div className="stage reveal">
+            <span className="tag">Featured</span>
+            {heroImg ? (
               <Image src={heroImg} alt="MS Lighting fixture" width={720} height={720} priority sizes="(max-width:920px) 90vw, 46vw" />
-            </div>
-          )}
+            ) : (
+              <div className="stage-fallback" aria-hidden>
+                <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M60 14a30 30 0 0 0-18 54c4 3 6 7 6 12v3h24v-3c0-5 2-9 6-12a30 30 0 0 0-18-54Z" />
+                  <path d="M50 95h20M52 104h16" />
+                  <path d="M60 4v6M104 32l-5 3M16 32l5 3M99 70l-5-3M21 70l5-3" />
+                </svg>
+                <span>Product imagery coming soon</span>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 

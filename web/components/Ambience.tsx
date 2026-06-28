@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /**
  * Site-wide motion layer (no markup of its own):
@@ -9,6 +10,7 @@ import { useEffect } from "react";
  * All effects are progressive — the page is fully usable without JS.
  */
 export default function Ambience() {
+  const pathname = usePathname();
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -78,7 +80,7 @@ export default function Ambience() {
         );
       };
     }
-  }, []);
+  }, [pathname]);
 
   return null;
 }
