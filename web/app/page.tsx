@@ -37,7 +37,7 @@ export default async function HomePage() {
       <section className="hero">
         <div className="inner">
           <div className="copy">
-            <div className="kicker reveal">MS Lighting · 2025 Collection</div>
+            <div className="kicker reveal">MS Lighting · Kuwait · 2025 Collection</div>
             <h1 className="reveal">Make light<br /><em>behave.</em></h1>
             <p className="reveal">
               Architectural LED fixtures — recessed, linear, magnetic and outdoor —
@@ -47,6 +47,7 @@ export default async function HomePage() {
               <Link href="/products" className="btn btn-primary">Explore the collection <Arrow /></Link>
               <Link href="/contact" className="btn btn-outline">Request a quote</Link>
             </div>
+            <div className="certs reveal"><b>Certified</b> · CE · RoHS · CB · SASO</div>
             <div className="scroll-cue reveal"><i />Scroll to begin</div>
           </div>
 
@@ -67,6 +68,17 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ===== FIXTURE-FAMILY MARQUEE ===== */}
+      {categories.length > 0 && (
+        <div className="marquee" aria-hidden>
+          <div className="track">
+            {[...categories, ...categories].map((c, i) => (
+              <span key={`${c.slug}-${i}`}>{c.name_en}<i>✦</i></span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* ===== MANIFESTO ===== */}
       <section className="manifesto">
@@ -201,7 +213,8 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="eyebrow reveal">Let&apos;s build it</div>
           <h2 className="reveal">Light your next project.</h2>
-          <p className="reveal">Tell us about the space — we&apos;ll spec the right fixtures, quantities and certifications.</p>
+          <p className="ar-line reveal" lang="ar" dir="rtl">أضِئ مشروعك القادم</p>
+          <p className="reveal">Tell us about the space — we&apos;ll spec the right fixtures, quantities and certifications. Serving Kuwait, the GCC and beyond.</p>
           <div className="cta-row reveal" style={{ justifyContent: "center", display: "flex", gap: 14, flexWrap: "wrap" }}>
             <Link href="/contact" className="btn btn-primary">Request a quote <Arrow /></Link>
             <Link href="/products" className="btn btn-outline">Browse the catalogue</Link>

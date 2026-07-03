@@ -12,9 +12,9 @@ const IPin = () => (<svg width="13" height="13" viewBox="0 0 24 24" fill="none" 
 const IArrow = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="arrow"><path d="M7 17 17 7M7 7h10v10" /></svg>);
 
 const offices = [
-  { name: "Jiangmen Bohan Lighting", firm: "Manufacturer", email: "al@alburhanlighting.com", phone: null, address: "No.159, Yunoin Road, Jianghai District, Jiangmen City, Guangdong, China" },
-  { name: "Al-Burhan Hegazi Trading", firm: "Distributor · UAE", email: null, phone: "+971 56 595 4291", address: "Al Owais Business Tower, Shop #13, Al Sabkha, Dubai, UAE" },
   { name: "Al-Burhan Regional Co.", firm: "Distributor · Kuwait", email: "info@alburhan-regional.com", phone: "+965 511 75 511", address: "Al Rifal Building, 4th Floor, Tunis Street, Hawally, Kuwait" },
+  { name: "Al-Burhan Hegazi Trading", firm: "Distributor · UAE", email: null, phone: "+971 56 595 4291", address: "Al Owais Business Tower, Shop #13, Al Sabkha, Dubai, UAE" },
+  { name: "Jiangmen Bohan Lighting", firm: "Manufacturer", email: "al@alburhanlighting.com", phone: null, address: "No.159, Yunoin Road, Jianghai District, Jiangmen City, Guangdong, China" },
 ];
 
 export default function ContactPage() {

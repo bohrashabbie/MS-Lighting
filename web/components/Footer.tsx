@@ -17,9 +17,9 @@ export default async function Footer() {
   } catch {}
 
   const presence = [
-    { name: "Jiangmen Bohan Lighting Co., Ltd", row: "Jianghai District, Jiangmen City, Guangdong, China", icon: <IPin /> },
-    { name: "Al-Burhan Hegazi Gen. Trading L.L.C", row: "Al Owais Business Tower, Al Sabkha, Dubai, UAE  ·  +971 56 595 4291", icon: <IPin /> },
     { name: "Al-Burhan Regional Co.", row: "Al Rifal Building, Tunis St, Hawally, Kuwait  ·  +965 511 75 511", icon: <IPin /> },
+    { name: "Al-Burhan Hegazi Gen. Trading L.L.C", row: "Al Owais Business Tower, Al Sabkha, Dubai, UAE  ·  +971 56 595 4291", icon: <IPin /> },
+    { name: "Jiangmen Bohan Lighting Co., Ltd", row: "Jianghai District, Jiangmen City, Guangdong, China", icon: <IPin /> },
   ];
 
   return (

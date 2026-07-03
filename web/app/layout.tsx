@@ -1,23 +1,29 @@
 import type { Metadata } from "next";
-import { Marcellus, Jost } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Ambience from "@/components/Ambience";
 import { SITE_URL } from "@/lib/api";
 
-// Delicate editorial pairing — fine architectural display + light geometric body.
-const display = Marcellus({
-  weight: "400",
+// Futuristic stack — geometric display + neutral body + mono for HUD labels.
+const display = Space_Grotesk({
   subsets: ["latin"],
   variable: "--display",
   display: "swap",
 });
-const sans = Jost({
+const sans = Inter({
   subsets: ["latin"],
   variable: "--sans",
   display: "swap",
 });
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--mono",
+  display: "swap",
+});
+
+export const viewport = { themeColor: "#05060a" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -64,7 +70,7 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
       <head>
         <noscript>
           {/* Without JS the reveal observer never runs — show everything. */}
