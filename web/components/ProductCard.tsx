@@ -30,6 +30,7 @@ export default function ProductCard({ product }: { product: Product }) {
             alt={product.name_en}
             width={520}
             height={520}
+            quality={90}
             sizes="(max-width:560px) 100vw, (max-width:980px) 50vw, 33vw"
           />
         ) : null}
@@ -44,7 +45,7 @@ export default function ProductCard({ product }: { product: Product }) {
       {spec ? (
         <div className="spec">
           <div className="spec-label">Specifications &amp; Technical Data</div>
-          <Image src={spec} alt={`${product.name_en} specifications`} width={760} height={1040} sizes="(max-width:980px) 100vw, 33vw" />
+          <Image src={spec} alt={`${product.name_en} specifications`} width={760} height={1040} quality={95} sizes="(max-width:980px) 100vw, 33vw" />
           <div className="cta" onClick={(e) => e.stopPropagation()}>
             <Link href={href} className="btn btn-primary full">View full product</Link>
           </div>

@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Inter } from "next/font/google";
+import { Marcellus, Jost } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Ambience from "@/components/Ambience";
 import { SITE_URL } from "@/lib/api";
 
-// Editorial display grotesque + clean neutral body — light, modern, gallery feel.
-const display = Bricolage_Grotesque({
+// Delicate editorial pairing — fine architectural display + light geometric body.
+const display = Marcellus({
+  weight: "400",
   subsets: ["latin"],
   variable: "--display",
   display: "swap",
 });
-const sans = Inter({
+const sans = Jost({
   subsets: ["latin"],
   variable: "--sans",
   display: "swap",

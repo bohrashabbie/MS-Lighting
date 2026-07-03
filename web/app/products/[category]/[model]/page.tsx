@@ -82,7 +82,7 @@ export default async function ProductPage(
         <div className="detail">
           <div className="gallery">
             <div className="main">
-              {hero ? <Image src={hero} alt={p.name_en} width={700} height={930} priority /> : null}
+              {hero ? <Image src={hero} alt={p.name_en} width={700} height={930} priority quality={90} /> : null}
             </div>
           </div>
 
@@ -119,7 +119,7 @@ export default async function ProductPage(
             {spec ? (
               <div className="spec-sheet">
                 <h3>Specifications &amp; Technical Data</h3>
-                <Image src={spec} alt={`${p.name_en} specification sheet`} width={900} height={1240} />
+                <Image src={spec} alt={`${p.name_en} specification sheet`} width={900} height={1240} quality={95} sizes="(max-width:900px) 100vw, 44vw" />
               </div>
             ) : null}
           </div>

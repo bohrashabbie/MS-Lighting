@@ -56,7 +56,7 @@ export default async function SearchPage(
               return (
                 <Link key={p.slug} href={p.url} className="cat-card">
                   <div className="thumb">
-                    {img ? <Image src={img} alt={p.name_en} width={440} height={330} sizes="25vw" /> : <span className="ph">{(p.model_code || p.name_en).charAt(0)}</span>}
+                    {img ? <Image src={img} alt={p.name_en} width={440} height={330} quality={90} sizes="25vw" /> : <span className="ph">{(p.model_code || p.name_en).charAt(0)}</span>}
                   </div>
                   <div className="body">
                     <div>

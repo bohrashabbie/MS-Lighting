@@ -53,7 +53,7 @@ export default async function HomePage() {
           <div className="stage reveal">
             <span className="tag">Featured</span>
             {heroImg ? (
-              <Image src={heroImg} alt="MS Lighting fixture" width={720} height={720} priority sizes="(max-width:920px) 90vw, 46vw" />
+              <Image src={heroImg} alt="MS Lighting fixture" width={720} height={720} priority quality={90} sizes="(max-width:920px) 90vw, 46vw" />
             ) : (
               <div className="stage-fallback" aria-hidden>
                 <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
@@ -97,7 +97,7 @@ export default async function HomePage() {
                 </div>
                 <Link href={`/products/${c.slug}`} className="shot reveal" aria-label={c.name_en}>
                   {img ? (
-                    <Image src={img} alt={c.name_en} width={680} height={544} sizes="(max-width:880px) 90vw, 46vw" />
+                    <Image src={img} alt={c.name_en} width={680} height={544} quality={90} sizes="(max-width:880px) 90vw, 46vw" />
                   ) : null}
                 </Link>
               </div>
