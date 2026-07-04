@@ -18,6 +18,12 @@ export default function Ambience() {
     const reveals = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
     if (reduce) {
       reveals.forEach((el) => el.classList.add("in"));
+      // No animation — show final counter values immediately.
+      document.querySelectorAll<HTMLElement>("[data-count]").forEach((el) => {
+        const n = parseFloat(el.dataset.count || "0").toLocaleString();
+        const suffix = el.dataset.suffix || "";
+        el.innerHTML = suffix ? `${n}<span>${suffix}</span>` : n;
+      });
     } else {
       const io = new IntersectionObserver(
         (entries) => {

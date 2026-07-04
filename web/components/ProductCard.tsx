@@ -4,10 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/types";
 import { imageUrl } from "@/lib/api";
+import { localRender } from "@/lib/renders";
 
 export default function ProductCard({ product }: { product: Product }) {
   const [open, setOpen] = useState(false);
+  // Hi-res local studio render wins over the catalogue-scan image.
+  const render = localRender(product.model_code);
   const hero =
+    render?.src ||
     imageUrl(product.image_url) ||
     imageUrl(product.images?.find((i) => i.image_type === "hero")?.image_url);
   const spec =
@@ -28,9 +32,9 @@ export default function ProductCard({ product }: { product: Product }) {
           <Image
             src={hero}
             alt={product.name_en}
-            width={520}
-            height={520}
-            quality={90}
+            width={render?.w ?? 520}
+            height={render?.h ?? 520}
+            quality={92}
             sizes="(max-width:560px) 100vw, (max-width:980px) 50vw, 33vw"
           />
         ) : null}

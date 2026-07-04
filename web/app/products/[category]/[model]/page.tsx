@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getProduct, imageUrl, SITE_URL } from "@/lib/api";
+import { localRender } from "@/lib/renders";
 
 export const revalidate = 120;
 
@@ -38,7 +39,9 @@ export default async function ProductPage(
     notFound();
   }
 
-  const hero = imageUrl(p.image_url) || imageUrl(p.images?.find((i) => i.image_type === "hero")?.image_url);
+  // Hi-res local studio render wins over the catalogue-scan image.
+  const render = localRender(p.model_code);
+  const hero = render?.src || imageUrl(p.image_url) || imageUrl(p.images?.find((i) => i.image_type === "hero")?.image_url);
   const spec = imageUrl(p.spec_image_url) || imageUrl(p.images?.find((i) => i.image_type === "spec")?.image_url);
   const catSlug = p.category?.slug ?? "all";
 
@@ -82,7 +85,7 @@ export default async function ProductPage(
         <div className="detail">
           <div className="gallery">
             <div className="main">
-              {hero ? <Image src={hero} alt={p.name_en} width={700} height={930} priority quality={90} /> : null}
+              {hero ? <Image src={hero} alt={p.name_en} width={render?.w ?? 700} height={render?.h ?? 930} priority quality={95} sizes="(max-width:900px) 92vw, 48vw" /> : null}
             </div>
           </div>
 

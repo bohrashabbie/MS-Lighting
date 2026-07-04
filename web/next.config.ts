@@ -4,7 +4,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: "standalone",
   images: {
-    formats: ["image/webp"],
+    // AVIF first — noticeably crisper than WebP at the same byte size,
+    // which matters for the fine metal/optic detail in product renders.
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "*.s3.*.amazonaws.com", pathname: "/**" },
       { protocol: "https", hostname: "*.s3.amazonaws.com", pathname: "/**" },

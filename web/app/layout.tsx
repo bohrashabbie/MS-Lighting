@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter_Tight, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Ambience from "@/components/Ambience";
 import { SITE_URL } from "@/lib/api";
 
-// Futuristic stack — geometric display + neutral body + mono for HUD labels.
-const display = Space_Grotesk({
+// Architectural stack — one neutral grotesque family: tight cut for display,
+// regular cut for body, mono only for micro-labels.
+const display = Inter_Tight({
   subsets: ["latin"],
   variable: "--display",
   display: "swap",
@@ -23,7 +24,7 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-export const viewport = { themeColor: "#05060a" };
+export const viewport = { themeColor: "#fbfbfa" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
