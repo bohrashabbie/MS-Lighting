@@ -18,14 +18,7 @@ export default function CategoryCard({
     <Link href={`/products/${category.slug}`} className="cat-card">
       <div className="thumb">
         {img ? (
-          <Image
-            src={img}
-            alt={category.name_en}
-            width={render?.w ?? 440}
-            height={render?.h ?? 440}
-            quality={92}
-            sizes="(max-width:560px) 100vw, 25vw"
-          />
+          <Image src={img} alt={category.name_en} width={render?.w ?? 440} height={render?.h ?? 440} quality={92} sizes="(max-width:560px) 100vw, 25vw" />
         ) : (
           <span className="ph">{category.name_en.charAt(0)}</span>
         )}

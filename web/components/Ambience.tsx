@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 /**
  * Site-wide motion layer (no markup of its own):
  *  - reveals `.reveal` elements on scroll with a stagger
- *  - drives a cursor-following spotlight on `.hero` / `.page-hero`
  *  - animates count-up on `[data-count]` numbers when they enter view
  * All effects are progressive — the page is fully usable without JS.
  */
@@ -66,24 +65,9 @@ export default function Ambience() {
       }, { threshold: 0.5 });
       nums.forEach((el) => nio.observe(el));
 
-      // ---- hero cursor spotlight ----------------------------------------
-      const heroes = Array.from(
-        document.querySelectorAll<HTMLElement>(".hero, .page-hero")
-      );
-      const onMove = (ev: PointerEvent) => {
-        const el = ev.currentTarget as HTMLElement;
-        const r = el.getBoundingClientRect();
-        el.style.setProperty("--mx", `${((ev.clientX - r.left) / r.width) * 100}%`);
-        el.style.setProperty("--my", `${((ev.clientY - r.top) / r.height) * 100}%`);
-      };
-      heroes.forEach((h) => h.addEventListener("pointermove", onMove as EventListener));
-
       return () => {
         io.disconnect();
         nio.disconnect();
-        heroes.forEach((h) =>
-          h.removeEventListener("pointermove", onMove as EventListener)
-        );
       };
     }
   }, [pathname]);

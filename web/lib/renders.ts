@@ -2,7 +2,12 @@
 // High-resolution studio renders (local, /public/renders/*.png).
 // These override the catalogue-scan images wherever a model code matches —
 // the PDF crops are too soft for hero placement; these are 1300–1800px
-// transparent cut-outs that stay crisp through next/image optimization.
+// studio shots that stay crisp through next/image optimization.
+//
+// NOTE: these PNGs are OPAQUE with a solid BLACK background baked in (they are
+// NOT transparent cut-outs). On the white site they are placed inside dark
+// "noir plate" panels (see .heroimg / .cine .shot / .cat-card .thumb /
+// .detail .gallery in globals.css) so the black edge blends into the plate.
 // ============================================================================
 
 export interface LocalRender {
@@ -15,16 +20,19 @@ export interface LocalRender {
 }
 
 export const RENDERS: LocalRender[] = [
-  { code: "MS-240R", src: "/renders/MS-240R.png", w: 1800, h: 1336, category: "Recessed Down Light", categorySlug: "recessed-down-light" },
-  { code: "MS-241", src: "/renders/MS-241.png", w: 1800, h: 1440, category: "Recessed Down Light", categorySlug: "recessed-down-light" },
-  { code: "MS-242", src: "/renders/MS-242.png", w: 1800, h: 1312, category: "Recessed Down Light", categorySlug: "recessed-down-light" },
-  { code: "MS-250", src: "/renders/MS-250.png", w: 1800, h: 1216, category: "Recessed Down Light", categorySlug: "recessed-down-light" },
+  { code: "MS-240R", src: "/renders/MS-240R.png", w: 1186, h: 880, category: "Recessed Down Light", categorySlug: "recessed-down-light" },
+  { code: "MS-241", src: "/renders/MS-241.png", w: 1207, h: 880, category: "Recessed Down Light", categorySlug: "recessed-down-light" },
+  { code: "MS-242", src: "/renders/MS-242.png", w: 1152, h: 921, category: "Recessed Down Light", categorySlug: "recessed-down-light" },
+  { code: "MS-250", src: "/renders/MS-250.png", w: 1255, h: 848, category: "Recessed Down Light", categorySlug: "recessed-down-light" },
   { code: "MS-252", src: "/renders/MS-252.png", w: 1776, h: 1800, category: "Surface Mounted Down Light", categorySlug: "surface-mounted-down-light" },
-  { code: "MS-257", src: "/renders/MS-257.png", w: 1800, h: 1440, category: "Surface Mounted Down Light", categorySlug: "surface-mounted-down-light" },
-  { code: "MS-220GR", src: "/renders/MS-220GR.png", w: 1281, h: 1667, category: "Recessed Grille Spot Light", categorySlug: "recessed-grille-spot-light" },
-  { code: "MS-1140", src: "/renders/MS-1140.png", w: 1800, h: 895, category: "Recessed Panel Light", categorySlug: "recessed-panel-light" },
-  { code: "MS-341AR", src: "/renders/MS-341AR.png", w: 1800, h: 1058, category: "Recessed Spot Light", categorySlug: "recessed-spot-light" },
+  { code: "MS-257", src: "/renders/MS-257.png", w: 1152, h: 921, category: "Surface Mounted Down Light", categorySlug: "surface-mounted-down-light" },
+  { code: "MS-220GR", src: "/renders/MS-220GR.png", w: 1186, h: 880, category: "Recessed Grille Spot Light", categorySlug: "recessed-grille-spot-light" },
+  { code: "MS-1140", src: "/renders/MS-1140.png", w: 1451, h: 720, category: "Recessed Panel Light", categorySlug: "recessed-panel-light" },
+  { code: "MS-341AR", src: "/renders/MS-341AR.png", w: 1334, h: 784, category: "Recessed Spot Light", categorySlug: "recessed-spot-light" },
   { code: "MS-342BR", src: "/renders/MS-342BR.png", w: 1800, h: 927, category: "Recessed Spot Light", categorySlug: "recessed-spot-light" },
+  // Net-new render — no matching model_code in the CMS yet (closest family: MS-342BR/CR "Recessed Spot Light").
+  // Add a product with model_code "MS-342BS-3" (or update this code) once it's seeded.
+  { code: "MS-342BS-3", src: "/renders/MS-342BS-3.png", w: 1430, h: 736, category: "Recessed Spot Light", categorySlug: "recessed-spot-light" },
 ];
 
 const byCode = new Map(RENDERS.map((r) => [r.code.toUpperCase(), r]));
