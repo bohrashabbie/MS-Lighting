@@ -45,6 +45,15 @@ img{max-width:100%;display:block}
 .reveal.in{opacity:1;transform:none;clip-path:inset(0 0 0 0);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0ms),transform 1s cubic-bezier(.2,.7,.2,1) var(--d,0ms),clip-path 1s cubic-bezier(.2,.7,.2,1) var(--d,0ms)}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;clip-path:none}}
 
+/* ====================== GEO BANNER ====================== */
+.geo-banner{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;background:var(--ink);color:rgba(255,255,255,.85);padding:9px 16px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;text-align:center}
+.geo-banner .gb-label{color:rgba(255,255,255,.5)}
+.geo-banner .gb-countries{white-space:nowrap}
+.geo-banner em{font-style:normal;color:rgba(255,255,255,.5)}
+.geo-banner a{color:#fff;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:1px;white-space:nowrap;transition:border-color .25s}
+.geo-banner a:hover{border-color:#fff}
+@media(max-width:640px){.geo-banner{gap:8px;font-size:9px;padding:7px 12px}.geo-banner .gb-label{display:none}}
+
 /* ====================== HEADER ====================== */
 .header{position:sticky;top:0;z-index:80;background:#fff;border-bottom:1px solid var(--line)}
 .header-inner{display:flex;align-items:center;gap:30px;padding:14px 36px;max-width:var(--maxw);margin:0 auto}

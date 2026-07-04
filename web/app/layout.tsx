@@ -81,6 +81,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <div className="grain" aria-hidden />
         <Ambience />
+        <div className="geo-banner">
+          <span className="gb-label">Sold across</span>
+          <span className="gb-countries">Kuwait · UAE · China · Egypt <em>(soon)</em></span>
+          <a href="http://alburhan-regional.com/" target="_blank" rel="noopener noreferrer">
+            Al-Burhan Regional Network ↗
+          </a>
+        </div>
         <Header />
         <main>{children}</main>
         <Footer />
