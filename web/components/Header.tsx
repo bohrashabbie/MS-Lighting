@@ -12,6 +12,8 @@ export default function Header() {
         <nav className="menu">
           <Link href="/">Home</Link>
           <Link href="/products">Products</Link>
+          <Link href="/products/indoor">Indoor</Link>
+          <Link href="/products/outdoor">Outdoor</Link>
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
         </nav>

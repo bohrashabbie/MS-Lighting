@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getCategories, getCategory, imageUrl } from "@/lib/api";
 import ProductCard from "@/components/ProductCard";
 import { RENDERS, localRender } from "@/lib/renders";
+import { SECTIONS, splitBySection, type SectionSlug } from "@/lib/sections";
 import type { Product, ProductCategory } from "@/lib/types";
 
 export const revalidate = 120;
@@ -15,7 +16,7 @@ export default async function HomePage() {
   const categories = await getCategories().catch(() => []);
 
   const details = await Promise.all(
-    categories.slice(0, 8).map((c) => getCategory(c.slug).catch(() => null))
+    categories.map((c) => getCategory(c.slug).catch(() => null))
   );
   const allProducts: Product[] = details.flatMap((d) => d?.products ?? []);
   const counts = new Map(
@@ -40,6 +41,11 @@ export default async function HomePage() {
   const featured = [...withRender, ...others].slice(0, 6);
   const stages = categories.slice(0, 4);
   const rest = categories.slice(4);
+
+  // Indoor / Outdoor application split (WAC-style)
+  const bySection = splitBySection(categories);
+  const sectionModels = (s: SectionSlug) =>
+    bySection[s].reduce((n, c) => n + (counts.get(c.slug) ?? 0), 0);
 
   return (
     <>
@@ -90,6 +96,46 @@ export default async function HomePage() {
           </div>
         </div>
       )}
+
+      {/* ===== INDOOR / OUTDOOR APPLICATIONS ===== */}
+      <section className="section apps">
+        <div className="wrap">
+          <div className="section-head reveal">
+            <div>
+              <div className="eyebrow">Applications</div>
+              <h2>Indoor &amp; Outdoor</h2>
+            </div>
+            <Link href="/products" className="link">All products</Link>
+          </div>
+          <div className="apps-grid">
+            {(["indoor", "outdoor"] as const).map((s) => {
+              const def = SECTIONS[s];
+              const cats = bySection[s];
+              const models = sectionModels(s);
+              return (
+                <Link href={`/products/${s}`} className="app-tile reveal" key={s}>
+                  <Image src={def.banner} alt={def.bannerAlt} fill quality={80} sizes="(max-width:880px) 100vw, 50vw" />
+                  <div className="scrim" aria-hidden />
+                  <div className="app-body">
+                    <div className="app-kicker">
+                      {cats.length} families{models ? ` · ${models} models` : ""}
+                    </div>
+                    <h3>{def.short}</h3>
+                    <p>{def.tagline}</p>
+                    <div className="app-cats">
+                      {cats.slice(0, 5).map((c) => (
+                        <span key={c.slug}>{c.name_en}</span>
+                      ))}
+                      {cats.length > 5 && <span>+{cats.length - 5} more</span>}
+                    </div>
+                    <span className="app-cta">Explore {def.short.toLowerCase()} <Arrow /></span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* ===== MANIFESTO ===== */}
       <section className="manifesto">
