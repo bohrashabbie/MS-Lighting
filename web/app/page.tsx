@@ -47,7 +47,7 @@ export default async function HomePage() {
       <section className="hero">
         <div className="inner">
           <div className="copy">
-            <div className="kicker reveal">MS Lighting · Kuwait · UAE · China · Egypt</div>
+            <div className="kicker reveal">MS Lighting · 2025 Collection</div>
             <h1 className="reveal">Make light<br /><em>behave.</em></h1>
             <p className="reveal">
               Architectural LED fixtures — recessed, linear, magnetic and outdoor —
@@ -58,6 +58,7 @@ export default async function HomePage() {
               <Link href="/contact" className="btn btn-outline">Request a quote</Link>
             </div>
             <div className="certs reveal"><b>Certified</b> · CE · RoHS · CB · SASO</div>
+            <div className="certs markets reveal"><b>Sold across</b> · Kuwait · UAE · China · Egypt <span className="soon">(soon)</span></div>
             <div className="scroll-cue reveal"><i />Scroll to begin</div>
           </div>
 

@@ -86,6 +86,8 @@ img{max-width:100%;display:block}
 .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap}
 .hero .certs{margin-top:26px;color:var(--muted);font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase}
 .hero .certs b{color:var(--ink-2);font-weight:500}
+.hero .certs.markets{margin-top:10px}
+.hero .certs .soon{opacity:.6}
 .hero .scroll-cue{margin-top:34px;display:inline-flex;align-items:center;gap:11px;color:var(--muted);font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase}
 .hero .scroll-cue i{width:24px;height:38px;border:1px solid var(--line-2);border-radius:14px;position:relative}
 .hero .scroll-cue i:after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;border-radius:3px;background:var(--ink);transform:translateX(-50%);animation:cue 1.6s ease infinite}
