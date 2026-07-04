@@ -52,6 +52,7 @@ const orgJsonLd = {
       url: SITE_URL,
       logo: `${SITE_URL}/logo.png`,
       description: "Professional LED lighting manufacturer and supplier — recessed, surface, linear, magnetic and outdoor fixtures.",
+      areaServed: ["Kuwait", "United Arab Emirates", "China", "Egypt"],
     },
     {
       "@type": "WebSite",

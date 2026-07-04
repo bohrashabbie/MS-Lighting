@@ -3,7 +3,7 @@ import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact MS Lighting for product enquiries, pricing and project lighting solutions across China, UAE and Kuwait.",
+  description: "Contact MS Lighting for product enquiries, pricing and project lighting solutions across Kuwait, the UAE, China and Egypt.",
 };
 
 const IMail = () => (<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 6L2 7" /></svg>);
@@ -11,10 +11,11 @@ const IPhone = () => (<svg width="13" height="13" viewBox="0 0 24 24" fill="none
 const IPin = () => (<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>);
 const IArrow = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="arrow"><path d="M7 17 17 7M7 7h10v10" /></svg>);
 
-const offices = [
-  { name: "Al-Burhan Regional Co.", firm: "Distributor · Kuwait", email: "info@alburhan-regional.com", phone: "+965 511 75 511", address: "Al Rifal Building, 4th Floor, Tunis Street, Hawally, Kuwait" },
-  { name: "Al-Burhan Hegazi Trading", firm: "Distributor · UAE", email: null, phone: "+971 56 595 4291", address: "Al Owais Business Tower, Shop #13, Al Sabkha, Dubai, UAE" },
-  { name: "Jiangmen Bohan Lighting", firm: "Manufacturer", email: "al@alburhanlighting.com", phone: null, address: "No.159, Yunoin Road, Jianghai District, Jiangmen City, Guangdong, China" },
+const offices: { name: string; firm: string; email: string | null; phone: string | null; address: string }[] = [
+  { name: "Al-Burhan Regional Co.", firm: "Distributor · Kuwait", email: "info@alburhan-regional.com", phone: "+965 999 35 529", address: "Al Refaei Building, 4th Floor, Office 5&6, Tunis Street, Hawally, Kuwait" },
+  { name: "Al-Burhan Hegazi Trading", firm: "Distributor · UAE", email: "bdm@alburhan-regional.com", phone: "+971 56 6032 765", address: "Al Owais Business Tower, Shop #13, Al Sabkha, Dubai, UAE" },
+  { name: "Jiangmen Bohan Lighting", firm: "Manufacturer · China", email: "al@alburhanlighting.com", phone: "+86 137 2600 6786", address: "B2 Building, No.159, Yunoin Road, Jianghai District, Jiangmen City, Guangdong, China" },
+  { name: "Al-Burhan Egypt", firm: "Distributor · Egypt", email: null, phone: null, address: "Egypt — opening soon" },
 ];
 
 export default function ContactPage() {
@@ -24,7 +25,7 @@ export default function ContactPage() {
         <div className="inner">
           <div className="eyebrow">Get in touch</div>
           <h1 className="serif">Let&apos;s talk lighting</h1>
-          <p>Reach out for product enquiries, pricing or full project lighting solutions — our team across China, the UAE and Kuwait is ready to help.</p>
+          <p>Reach out for product enquiries, pricing or full project lighting solutions — our team across Kuwait, the UAE, China and (soon) Egypt is ready to help.</p>
         </div>
       </section>
 

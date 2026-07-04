@@ -101,6 +101,21 @@ export default async function ProductPage(
               <Link href="/contact" className="btn btn-primary">Enquire</Link>
             </div>
 
+            <div className="avail">
+              <div className="avail-label">Available in</div>
+              <div className="avail-chips">
+                <span className="avail-chip">Kuwait</span>
+                <span className="avail-chip">United Arab Emirates</span>
+                <span className="avail-chip">China</span>
+                <span className="avail-chip soon">Egypt · Coming soon</span>
+              </div>
+              <p className="avail-note">
+                Sold and supported in every market of the{" "}
+                <a href="http://alburhan-regional.com/" target="_blank" rel="noopener noreferrer">Al-Burhan regional network</a>
+                {" "}— 500+ projects delivered worldwide.
+              </p>
+            </div>
+
             <div className="prose">
               <p>
                 <strong>{p.model_code}</strong> is part of the MS Lighting{" "}
@@ -120,10 +135,13 @@ export default async function ProductPage(
             </div>
 
             {spec ? (
-              <div className="spec-sheet">
-                <h3>Specifications &amp; Technical Data</h3>
+              <details className="spec-sheet">
+                <summary>
+                  <h3>Specifications &amp; Technical Data</h3>
+                  <span className="ss-toggle" aria-hidden />
+                </summary>
                 <Image src={spec} alt={`${p.name_en} specification sheet`} width={900} height={1240} quality={95} sizes="(max-width:900px) 100vw, 44vw" />
-              </div>
+              </details>
             ) : null}
           </div>
         </div>

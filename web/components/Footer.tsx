@@ -17,9 +17,10 @@ export default async function Footer() {
   } catch {}
 
   const presence = [
-    { name: "Al-Burhan Regional Co.", row: "Al Rifal Building, Tunis St, Hawally, Kuwait  ·  +965 511 75 511", icon: <IPin /> },
-    { name: "Al-Burhan Hegazi Gen. Trading L.L.C", row: "Al Owais Business Tower, Al Sabkha, Dubai, UAE  ·  +971 56 595 4291", icon: <IPin /> },
-    { name: "Jiangmen Bohan Lighting Co., Ltd", row: "Jianghai District, Jiangmen City, Guangdong, China", icon: <IPin /> },
+    { name: "Al-Burhan Regional Co. · Kuwait", row: "Al Refaei Building, 4th Floor, Tunis St, Hawally  ·  +965 999 35 529", icon: <IPin /> },
+    { name: "Al-Burhan Hegazi · UAE", row: "Al Owais Business Tower, Al Sabkha, Dubai  ·  +971 56 6032 765", icon: <IPin /> },
+    { name: "Jiangmen Bohan Lighting Co., Ltd · China", row: "Jianghai District, Jiangmen City, Guangdong", icon: <IPin /> },
+    { name: "Al-Burhan Egypt", row: "Egypt · Opening soon", icon: <IPin /> },
   ];
 
   return (
@@ -54,8 +55,8 @@ export default async function Footer() {
             </p>
             <div className="footer-contact">
               <a href="mailto:info@alburhan-regional.com"><IMail /> info@alburhan-regional.com</a>
-              <a href="tel:+96551175511"><IPhone /> +965 511 75 511</a>
-              <span><IPin /> Hawally, Kuwait · Dubai, UAE · Jiangmen, China</span>
+              <a href="tel:+96599935529"><IPhone /> +965 999 35 529</a>
+              <span><IPin /> Kuwait · UAE · China · Egypt (soon)</span>
             </div>
             <div className="footer-social">
               <a href="#" aria-label="Facebook"><IFb /></a>

@@ -23,7 +23,9 @@ export default function AboutPage() {
             systems, track, wall, lawn, street, flood and high-bay fixtures. Built
             with quality components from leading brands, every product in our 2025
             catalogue is certified (CE, RoHS, CB, SASO and more) for reliable,
-            energy-efficient performance across China, the UAE and Kuwait.
+            energy-efficient performance. Our products are sold and supported across
+            every market of the Al-Burhan regional network — Kuwait, the UAE, China
+            and, soon, Egypt — with 500+ projects delivered worldwide.
           </p>
         </div>
       </section>

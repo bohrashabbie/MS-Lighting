@@ -43,7 +43,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="model">{product.model_code || product.name_en}</div>
         <div className="type">{product.category?.name_en}</div>
         {spec ? (
-          <span className="tip"><span className="dot" /> Hover for full specs</span>
+          <span className="tip"><span className="dot" /> Tap to view specifications</span>
         ) : null}
       </div>
       {spec ? (

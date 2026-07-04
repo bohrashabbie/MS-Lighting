@@ -47,7 +47,7 @@ export default async function HomePage() {
       <section className="hero">
         <div className="inner">
           <div className="copy">
-            <div className="kicker reveal">MS Lighting · Kuwait · 2025 Collection</div>
+            <div className="kicker reveal">MS Lighting · Kuwait · UAE · China · Egypt</div>
             <h1 className="reveal">Make light<br /><em>behave.</em></h1>
             <p className="reveal">
               Architectural LED fixtures — recessed, linear, magnetic and outdoor —
@@ -224,7 +224,7 @@ export default async function HomePage() {
           <div className="eyebrow reveal">Let&apos;s build it</div>
           <h2 className="reveal">Light your next project.</h2>
           <p className="ar-line reveal" lang="ar" dir="rtl">أضِئ مشروعك القادم</p>
-          <p className="reveal">Tell us about the space — we&apos;ll spec the right fixtures, quantities and certifications. Serving Kuwait, the GCC and beyond.</p>
+          <p className="reveal">Tell us about the space — we&apos;ll spec the right fixtures, quantities and certifications. Serving Kuwait, the UAE, China and Egypt through the Al-Burhan regional network.</p>
           <div className="cta-row reveal" style={{ justifyContent: "center", display: "flex", gap: 14, flexWrap: "wrap" }}>
             <Link href="/contact" className="btn btn-primary">Request a quote <Arrow /></Link>
             <Link href="/products" className="btn btn-outline">Browse the catalogue</Link>

@@ -196,8 +196,8 @@ img{max-width:100%;display:block}
 .card .tip{margin-top:13px;display:inline-flex;align-items:center;gap:8px;color:var(--ink-2);font-size:12px;font-weight:600;letter-spacing:.04em}
 .card .tip .dot{width:7px;height:7px;border-radius:50%;background:var(--ink)}
 .card .spec{max-height:0;opacity:0;overflow:hidden;transition:max-height .65s cubic-bezier(.2,.7,.2,1),opacity .4s ease;background:#fff;color:#141414;border-top:1px solid var(--line)}
-.card:hover .spec,.card.open .spec{max-height:1600px;opacity:1}
-.card:hover .tip,.card.open .tip{display:none}
+.card.open .spec{max-height:1600px;opacity:1}
+.card.open .tip{display:none}
 .card .spec-label{display:flex;align-items:center;gap:9px;padding:15px 22px 6px;color:var(--muted);font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
 .card .spec-label:before{content:"";width:22px;height:1px;background:var(--line-2)}
 .card .spec img{width:100%;height:auto}
@@ -205,18 +205,43 @@ img{max-width:100%;display:block}
 
 /* ====================== PRODUCT DETAIL ====================== */
 .detail{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;padding:30px 0 80px}
-@media(max-width:900px){.detail{grid-template-columns:1fr}}
 .detail .gallery{position:sticky;top:96px;align-self:start;border-radius:24px;padding:34px;
   background:radial-gradient(56% 50% at 50% 42%,var(--plate-2),var(--plate) 80%);
   border:1px solid var(--line);box-shadow:var(--shadow-lg)}
 .detail .gallery .main{position:relative;display:flex;align-items:center;justify-content:center;min-height:380px}
 .detail .gallery .main img{width:100%;height:auto;max-height:520px;object-fit:contain;filter:drop-shadow(0 26px 40px rgba(0,0,0,.55))}
+/* phones: single column, no sticky — flex rules out any grid/sticky overlap */
+@media(max-width:900px){
+  .detail{display:flex;flex-direction:column;gap:28px;padding:24px 0 64px}
+  .detail .gallery{position:relative;top:auto;padding:22px;width:100%}
+  .detail .gallery .main{min-height:0}
+}
 .detail h1{font-family:var(--display);font-size:clamp(34px,5vw,56px);font-weight:600;letter-spacing:-.03em;line-height:1.02;margin:10px 0 8px;color:var(--ink)}
 .detail .sub{color:var(--muted);font-size:11px}
 .detail .lead{color:var(--ink-2);margin:20px 0;font-size:16px;line-height:1.8}
 .detail .actions{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap}
+
+/* regional availability */
+.avail{margin:20px 0;border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--glass)}
+.avail-label{font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.avail-chips{display:flex;flex-wrap:wrap;gap:7px}
+.avail-chip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line-2);border-radius:30px;padding:6px 13px;font-size:12px;font-weight:600;color:var(--ink)}
+.avail-chip:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ink)}
+.avail-chip.soon{color:var(--muted);border-style:dashed}
+.avail-chip.soon:before{background:var(--muted)}
+.avail-note{margin-top:11px;font-size:12px;color:var(--muted);line-height:1.6}
+.avail-note a{color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.avail-note a:hover{opacity:.6}
+
+/* spec sheet — collapsed by default, opens on click */
 .spec-sheet{margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
-.spec-sheet h3{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#fff;background:var(--ink);padding:14px 20px}
+.spec-sheet summary{display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;background:var(--ink);padding:15px 20px;list-style:none}
+.spec-sheet summary::-webkit-details-marker{display:none}
+.spec-sheet summary h3{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.spec-sheet .ss-toggle{flex:0 0 auto;color:rgba(255,255,255,.8);font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;border:1px solid rgba(255,255,255,.3);border-radius:30px;padding:5px 13px;transition:.25s}
+.spec-sheet summary:hover .ss-toggle{border-color:#fff;color:#fff}
+.spec-sheet .ss-toggle:after{content:"View +"}
+.spec-sheet[open] .ss-toggle:after{content:"Hide −"}
 .spec-sheet img{width:100%;height:auto}
 
 /* ====================== SEARCH / CHIPS ====================== */
@@ -293,6 +318,7 @@ img{max-width:100%;display:block}
 
 /* form card */
 .form-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;box-shadow:var(--shadow);position:sticky;top:96px}
+@media(max-width:900px){.form-card{position:static}}
 .form-card h2{font-family:var(--display);font-size:26px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
 .form-card .sub{color:var(--muted);font-family:var(--sans);font-size:14px;margin:8px 0 22px;letter-spacing:0;text-transform:none;font-weight:400}
 .field{display:block;margin-bottom:14px}
