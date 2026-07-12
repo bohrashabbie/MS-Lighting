@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -20,6 +20,14 @@ const sans = Inter({
 const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--mono",
+  display: "swap",
+});
+// Editorial italic — used only for the emphasised word inside big headlines.
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--serif",
   display: "swap",
 });
 
@@ -71,7 +79,7 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable} ${serif.variable}`}>
       <head>
         <noscript>
           {/* Without JS the reveal observer never runs — show everything. */}

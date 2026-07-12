@@ -10,6 +10,8 @@
 // .detail .gallery in globals.css) so the black edge blends into the plate.
 // ============================================================================
 
+import { asset } from "./assets";
+
 export interface LocalRender {
   code: string;
   src: string;
@@ -33,7 +35,8 @@ export const RENDERS: LocalRender[] = [
   // Net-new render — no matching model_code in the CMS yet (closest family: MS-342BR/CR "Recessed Spot Light").
   // Add a product with model_code "MS-342BS-3" (or update this code) once it's seeded.
   { code: "MS-342BS-3", src: "/renders/MS-342BS-3.png", w: 1430, h: 736, category: "Recessed Spot Light", categorySlug: "recessed-spot-light" },
-];
+  // Renders are served from S3/CloudFront — resolve the paths once, here.
+].map((r) => ({ ...r, src: asset(r.src) }));
 
 const byCode = new Map(RENDERS.map((r) => [r.code.toUpperCase(), r]));
 

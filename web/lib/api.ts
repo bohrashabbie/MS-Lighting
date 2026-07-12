@@ -43,6 +43,28 @@ export function getCategories(): Promise<ProductCategory[]> {
   return getJSON<ProductCategory[]>("/public/product-categories");
 }
 
+export interface Brand {
+  id: number;
+  name: string;
+  logo_url: string;
+  website_url?: string;
+  sort_order?: number;
+  is_active?: boolean;
+}
+
+/**
+ * Partner brands. The `/public/brands` route is currently 500-ing server-side,
+ * so we read `/brands` (open, same data). We drop the seeded "Brand 01…15"
+ * placeholders and anything inactive, keeping only real, named partners.
+ */
+export async function getBrands(): Promise<Brand[]> {
+  const all = await getJSON<Brand[]>("/brands");
+  return all
+    .filter((b) => b.is_active !== false)
+    .filter((b) => b.name && !/^brand\s*\d+/i.test(b.name.trim()))
+    .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+}
+
 export function getCategory(slug: string): Promise<CategoryDetail> {
   return getJSON<CategoryDetail>(`/public/product-categories/${slug}`);
 }

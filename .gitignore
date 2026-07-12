@@ -250,3 +250,7 @@ admin-ref/
 # OS
 .DS_Store
 Thumbs.db
+
+# Stray source media dropped in the repo root (originals live in the asset library)
+/*.mp4
+/*.png

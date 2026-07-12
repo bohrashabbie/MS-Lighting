@@ -6,8 +6,19 @@ import type { Product } from "@/lib/types";
 import { imageUrl } from "@/lib/api";
 import { localRender } from "@/lib/renders";
 
+const Placeholder = () => (
+  <div className="ph" aria-hidden>
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M60 14a30 30 0 0 0-18 54c4 3 6 7 6 12v3h24v-3c0-5 2-9 6-12a30 30 0 0 0-18-54Z" />
+      <path d="M50 95h20M52 104h16" />
+    </svg>
+    <span>Image coming soon</span>
+  </div>
+);
+
 export default function ProductCard({ product }: { product: Product }) {
   const [open, setOpen] = useState(false);
+  const [imgOk, setImgOk] = useState(true);
   // Hi-res local studio render wins over the catalogue-scan image.
   const render = localRender(product.model_code);
   const hero =
@@ -28,7 +39,7 @@ export default function ProductCard({ product }: { product: Product }) {
     >
       <div className="heroimg">
         {product.category ? <span className="badge">{product.category.name_en}</span> : null}
-        {hero ? (
+        {hero && imgOk ? (
           <Image
             src={hero}
             alt={product.name_en}
@@ -36,8 +47,11 @@ export default function ProductCard({ product }: { product: Product }) {
             height={render?.h ?? 520}
             quality={92}
             sizes="(max-width:560px) 100vw, (max-width:980px) 50vw, 33vw"
+            onError={() => setImgOk(false)}
           />
-        ) : null}
+        ) : (
+          <Placeholder />
+        )}
       </div>
       <div className="meta">
         <div className="model">{product.model_code || product.name_en}</div>

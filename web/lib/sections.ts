@@ -6,6 +6,7 @@
 // Banners live in /public/banners (sourced from the Al-Burhan asset library).
 // ============================================================================
 import type { ProductCategory } from "./types";
+import { asset } from "./assets";
 
 export type SectionSlug = "indoor" | "outdoor";
 
@@ -29,7 +30,7 @@ export const SECTIONS: Record<SectionSlug, SectionDef> = {
     tagline: "Light that disappears into the architecture.",
     blurb:
       "Recessed, surface, linear, track and magnetic systems — engineered to vanish into the ceiling and put clean, glare-free light exactly where the design needs it.",
-    banner: "/banners/indoor.webp",
+    banner: asset("/banners/indoor.webp"),
     bannerAlt: "Sculptural LED pendant washing a modern living space in warm light",
   },
   outdoor: {
@@ -40,7 +41,7 @@ export const SECTIONS: Record<SectionSlug, SectionDef> = {
     tagline: "Built for the elements, tuned for the night.",
     blurb:
       "Wall, lawn, street and flood fixtures in sealed, IP-rated housings — shaping façades, landscapes and roadways through every season.",
-    banner: "/banners/outdoor.webp",
+    banner: asset("/banners/outdoor.webp"),
     bannerAlt: "City skyline with architectural façade lighting reflected on water at night",
   },
 };

@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCategory, getCategories, SITE_URL } from "@/lib/api";
+import { sectionOf, SECTIONS } from "@/lib/sections";
+import { guideFor } from "@/lib/guide";
 import ProductCard from "@/components/ProductCard";
+import Guide from "@/components/Guide";
+import Consult from "@/components/Consult";
 
 export const revalidate = 120;
 
@@ -39,6 +44,14 @@ export default async function CategoryPage(
   }
   const { category: c, products } = data!;
 
+  const section = sectionOf(c.slug);
+  const def = SECTIONS[section];
+
+  // Sibling families in the same application section — the WAC-style
+  // subcategory strip, minus the current family.
+  const all = await getCategories().catch(() => []);
+  const siblings = all.filter((x) => sectionOf(x.slug) === section && x.slug !== c.slug);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -47,7 +60,8 @@ export default async function CategoryPage(
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
           { "@type": "ListItem", position: 2, name: "Products", item: `${SITE_URL}/products` },
-          { "@type": "ListItem", position: 3, name: c.name_en },
+          { "@type": "ListItem", position: 3, name: def.name, item: `${SITE_URL}/products/${section}` },
+          { "@type": "ListItem", position: 4, name: c.name_en },
         ],
       },
       {
@@ -65,30 +79,71 @@ export default async function CategoryPage(
   };
 
   return (
-    <section className="section">
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="wrap">
-        <div className="crumbs">
-          <a href="/">Home</a><span>/</span>
-          <a href="/products">Products</a><span>/</span>{c.name_en}
-        </div>
-        <div className="section-head">
-          <h2 className="serif">{c.name_en}</h2>
-          <span className="meta">{products.length} {products.length === 1 ? "model" : "models"} · hover for specs</span>
-        </div>
-        {c.description_en && (
-          <p style={{ color: "var(--muted)", maxWidth: 680, marginBottom: 24 }}>{c.description_en}</p>
-        )}
-        {products.length ? (
-          <div className="grid grid-3">
-            {products.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
+
+      {/* ===== FAMILY HERO — minimal, typographic ===== */}
+      <section className="fam-hero">
+        <div className="wrap">
+          <div className="crumbs">
+            <Link href="/">Home</Link><span>/</span>
+            <Link href="/products">Products</Link><span>/</span>
+            <Link href={`/products/${section}`}>{def.short}</Link><span>/</span>
+            {c.name_en}
           </div>
-        ) : (
-          <p style={{ color: "var(--muted)", padding: "30px 0" }}>No products in this category yet.</p>
-        )}
-      </div>
-    </section>
+          <div className="fam-head">
+            <div>
+              <div className="eyebrow reveal">{def.kicker}</div>
+              <h1 className="reveal">{c.name_en}</h1>
+              {c.description_en && <p className="fam-lede reveal">{c.description_en}</p>}
+            </div>
+            <div className="fam-meta reveal">
+              <span><b>{products.length}</b> {products.length === 1 ? "model" : "models"}</span>
+              <span>CE · RoHS{section === "outdoor" ? " · IP-rated" : ""}</span>
+              <span>Tap a card for full specs</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== MODEL GRID ===== */}
+      <section className="section" style={{ paddingTop: 56 }}>
+        <div className="wrap">
+          {products.length ? (
+            <div className="grid grid-3">
+              {products.map((p) => (
+                <div className="reveal" key={p.id}>
+                  <ProductCard product={p} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p style={{ color: "var(--muted)", padding: "30px 0" }}>No products in this category yet.</p>
+          )}
+
+          {/* sibling families — WAC's subcategory strip */}
+          {siblings.length > 0 && (
+            <div className="fam-related reveal">
+              <span className="fr-label">More {def.short.toLowerCase()} families</span>
+              <div className="kw-row">
+                {siblings.map((s) => (
+                  <Link href={`/products/${s.slug}`} className="kw" key={s.slug}>{s.name_en}</Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ===== EDUCATIONAL LAYER ===== */}
+      <Guide
+        eyebrow="Field guide"
+        heading={`${c.name_en}, explained`}
+        items={guideFor(c.name_en, c.slug)}
+      />
+
+      {/* ===== CONSULTATION CLOSE ===== */}
+      <Consult context={`ceiling plan, mood reference or just a photo`} />
+    </>
   );
 }

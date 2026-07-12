@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getCategories, getCategory } from "@/lib/api";
 import { SECTIONS, splitBySection } from "@/lib/sections";
+import { CATALOGUE_GUIDE } from "@/lib/guide";
 import CategoryCard from "@/components/CategoryCard";
+import Guide from "@/components/Guide";
+import Consult from "@/components/Consult";
 
 export const revalidate = 120;
 
@@ -23,39 +26,68 @@ export default async function ProductsPage() {
       )
     )
   );
+  const modelCount = [...counts.values()].reduce<number>((n, v) => n + (v ?? 0), 0);
   const bySection = splitBySection(categories);
 
   return (
-    <section className="section">
-      <div className="wrap">
-        <div className="crumbs"><a href="/">Home</a><span>/</span>Products</div>
-        <div className="section-head">
-          <h2 className="serif">All Products</h2>
-          <span className="meta">{categories.length} categories</span>
-        </div>
-
-        {(["indoor", "outdoor"] as const).map((s) => {
-          const def = SECTIONS[s];
-          const cats = bySection[s];
-          if (!cats.length) return null;
-          return (
-            <div className="prod-group" id={s} key={s}>
-              <div className="section-head">
-                <div>
-                  <div className="eyebrow">{def.kicker}</div>
-                  <h2>{def.name}</h2>
-                </div>
-                <Link href={`/products/${s}`} className="link">{def.short} overview</Link>
-              </div>
-              <div className="grid grid-4">
-                {cats.map((c) => (
-                  <CategoryCard key={c.slug} category={c} count={counts.get(c.slug)} />
-                ))}
-              </div>
+    <>
+      {/* ===== CATALOGUE HERO ===== */}
+      <section className="fam-hero">
+        <div className="wrap">
+          <div className="crumbs"><Link href="/">Home</Link><span>/</span>Products</div>
+          <div className="fam-head">
+            <div>
+              <div className="eyebrow reveal">The catalogue</div>
+              <h1 className="reveal">All products</h1>
+              <p className="fam-lede reveal">
+                Every fixture family in the collection — indoor architectural
+                systems and sealed outdoor housings, each with its full
+                specification sheet.
+              </p>
             </div>
-          );
-        })}
-      </div>
-    </section>
+            <div className="fam-meta reveal">
+              <span><b>{categories.length}</b> families</span>
+              <span><b>{modelCount || "—"}</b> models</span>
+              <span>CE · RoHS · CB · SASO</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FAMILY GROUPS ===== */}
+      <section className="section" style={{ paddingTop: 56 }}>
+        <div className="wrap">
+          {(["indoor", "outdoor"] as const).map((s) => {
+            const def = SECTIONS[s];
+            const cats = bySection[s];
+            if (!cats.length) return null;
+            return (
+              <div className="prod-group" id={s} key={s}>
+                <div className="section-head">
+                  <div>
+                    <div className="eyebrow">{def.kicker}</div>
+                    <h2>{def.name}</h2>
+                  </div>
+                  <Link href={`/products/${s}`} className="link">{def.short} overview</Link>
+                </div>
+                <div className="grid grid-4">
+                  {cats.map((c) => (
+                    <div className="reveal" key={c.slug}>
+                      <CategoryCard category={c} count={counts.get(c.slug)} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ===== EDUCATIONAL LAYER ===== */}
+      <Guide eyebrow="Field guide" heading="Choosing well" items={CATALOGUE_GUIDE} />
+
+      {/* ===== CONSULTATION CLOSE ===== */}
+      <Consult />
+    </>
   );
 }

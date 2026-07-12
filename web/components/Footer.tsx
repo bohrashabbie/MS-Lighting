@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { getCategories } from "@/lib/api";
 import BackToTop from "./BackToTop";
+import { GROUP_URL } from "./Header";
+import { MARKETS } from "@/lib/markets";
 
 const IMail = () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 6L2 7" /></svg>);
 const IPhone = () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z" /></svg>);
@@ -46,13 +48,17 @@ export default async function Footer() {
         {/* Main grid */}
         <div className="footer-grid">
           <div className="footer-col footer-brand">
-            <Link href="/" className="logo-badge">
-              <Image src="/logo.png" alt="MS Lighting" width={120} height={34} className="logo-img" />
-            </Link>
+            <a href={GROUP_URL} target="_blank" rel="noopener noreferrer" className="logo-badge" title="Al-Burhan Regional">
+              <Image src="/logo.png" alt="MS Lighting — a company of Al-Burhan Regional" width={120} height={34} className="logo-img" />
+            </a>
             <p className="desc">
               Professional LED lighting — recessed, surface, linear, magnetic and
               outdoor fixtures, certified and built to perform. Catalogue 2025.
             </p>
+            <a href={GROUP_URL} target="_blank" rel="noopener noreferrer" className="footer-group">
+              Visit Al-Burhan Regional
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M9 7h8v8" /></svg>
+            </a>
             <div className="footer-contact">
               <a href="mailto:info@alburhan-regional.com"><IMail /> info@alburhan-regional.com</a>
               <a href="tel:+96599935529"><IPhone /> +965 999 35 529</a>
@@ -70,6 +76,7 @@ export default async function Footer() {
             <ul>
               <li><Link href="/">Home</Link></li>
               <li><Link href="/products">Products</Link></li>
+              <li><Link href="/commercial">Commercial</Link></li>
               <li><Link href="/products/indoor">Indoor Lighting</Link></li>
               <li><Link href="/products/outdoor">Outdoor Lighting</Link></li>
               <li><Link href="/about">About</Link></li>
@@ -78,9 +85,15 @@ export default async function Footer() {
           </div>
 
           <div className="footer-col">
-            <h4>Categories</h4>
+            <h4>Markets</h4>
             <ul>
-              {cats.slice(0, 7).map((c) => (
+              {MARKETS.map((m) => (
+                <li key={m.slug}><Link href="/commercial">{m.name}</Link></li>
+              ))}
+            </ul>
+            <h4 style={{ marginTop: 24 }}>Categories</h4>
+            <ul>
+              {cats.slice(0, 5).map((c) => (
                 <li key={c.slug}><Link href={`/products/${c.slug}`}>{c.name_en}</Link></li>
               ))}
             </ul>
