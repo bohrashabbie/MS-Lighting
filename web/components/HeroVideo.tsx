@@ -38,7 +38,7 @@ export default function HeroVideo() {
   }, [active]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="hero-video" aria-hidden>
+    <div className="hero-video" aria-hidden data-plx="0.1" data-plx-clamp="0.05">
       {CLIPS.map((src, i) => (
         <video
           key={src}

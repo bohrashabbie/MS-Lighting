@@ -60,7 +60,9 @@ export default async function SectionLanding({ section }: { section: SectionSlug
 
       {/* ===== BANNER HERO ===== */}
       <section className="sec-hero">
-        <Image src={def.banner} alt={def.bannerAlt} fill priority quality={82} sizes="100vw" />
+        <div className="plx-media" data-plx="0.16" data-plx-clamp="0.09">
+          <Image src={def.banner} alt={def.bannerAlt} fill priority quality={82} sizes="100vw" />
+        </div>
         <div className="veil" aria-hidden />
         <div className="inner">
           <div className="crumbs">
@@ -86,7 +88,7 @@ export default async function SectionLanding({ section }: { section: SectionSlug
       {/* ===== FAMILIES ===== */}
       <section className="section">
         <div className="wrap">
-          <div className="section-head">
+          <div className="section-head reveal">
             <div>
               <div className="eyebrow">{def.short} families</div>
               <h2>Choose a fixture family</h2>
@@ -96,7 +98,9 @@ export default async function SectionLanding({ section }: { section: SectionSlug
           {categories.length ? (
             <div className="grid grid-3">
               {categories.map((c, i) => (
-                <CategoryCard key={c.slug} category={c} count={counts[i]} />
+                <div className="reveal" key={c.slug}>
+                  <CategoryCard category={c} count={counts[i]} />
+                </div>
               ))}
             </div>
           ) : (
@@ -109,7 +113,7 @@ export default async function SectionLanding({ section }: { section: SectionSlug
       {featured.length > 0 && (
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="wrap">
-            <div className="section-head">
+            <div className="section-head reveal">
               <div>
                 <div className="eyebrow">Selected {def.short.toLowerCase()} models</div>
                 <h2>From the catalogue</h2>
@@ -118,7 +122,9 @@ export default async function SectionLanding({ section }: { section: SectionSlug
             </div>
             <div className="grid grid-3">
               {featured.map((p) => (
-                <ProductCard key={p.id} product={p} />
+                <div className="reveal" key={p.id}>
+                  <ProductCard product={p} />
+                </div>
               ))}
             </div>
           </div>

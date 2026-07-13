@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: "standalone",
+  // Overridable so a verification build can run beside an active dev server
+  // (both default to .next and would trample each other's artifacts).
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   images: {
     // AVIF first — noticeably crisper than WebP at the same byte size,
     // which matters for the fine metal/optic detail in product renders.

@@ -79,14 +79,55 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable} ${serif.variable}`}>
+    <html
+      lang="en"
+      className={`${display.variable} ${sans.variable} ${mono.variable} ${serif.variable}`}
+      suppressHydrationWarning
+    >
       <head>
+        {/* Before first paint: skip the intro curtain if it already played
+            this tab session (Ambience sets the flag). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{sessionStorage.getItem('msIntro')&&document.documentElement.setAttribute('data-intro','off')}catch(e){}",
+          }}
+        />
         <noscript>
           {/* Without JS the reveal observer never runs — show everything. */}
-          <style>{`.reveal{opacity:1!important;transform:none!important;filter:none!important}`}</style>
+          <style>{`.reveal{opacity:1!important;transform:none!important;filter:none!important}#curtain{display:none!important}#progress{display:none}`}</style>
         </noscript>
       </head>
       <body>
+        {/* Cinematic intro — a tungsten seam charges from the centre out as
+            the counter runs to 100; the wordmark rises above it, the seam
+            flares, and the curtain parts along it like a shutter opening.
+            Plays once per tab session; reduced-motion and no-JS both skip it. */}
+        <div id="curtain" aria-hidden="true">
+          <div className="ct-panels">
+            <i className="ct-p-top" />
+            <i className="ct-p-btm ct-p-last" />
+          </div>
+          <div className="ct-glow" />
+          <div className="ct-inner">
+            <div className="ct-half ct-ha">
+              <div className="ct-kicker">Al-Burhan Group</div>
+              <div className="ct-word">
+                <span className="ct-mask"><span className="ct-t1">MS</span></span>{" "}
+                <span className="ct-mask"><span className="ct-t2">Lighting</span></span>
+              </div>
+            </div>
+            <div className="ct-half ct-hb">
+              <div className="ct-tag">Light, engineered to disappear</div>
+            </div>
+          </div>
+          <div className="ct-seam" />
+          <div className="ct-cor ct-c-tl">MS Lighting<em>®</em></div>
+          <div className="ct-cor ct-c-tr">Catalogue 2025</div>
+          <div className="ct-cor ct-c-br">Kuwait · UAE · China · Egypt</div>
+          <div className="ct-count"><i>Loading</i><b><span id="ct-num">0</span><em>%</em></b></div>
+        </div>
+        <div id="progress" aria-hidden="true" />
         <div className="grain" aria-hidden />
         <Ambience />
         <div className="geo-banner">

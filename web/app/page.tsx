@@ -6,6 +6,7 @@ import HeroVideo from "@/components/HeroVideo";
 import Testimonials from "@/components/Testimonials";
 import Expertise from "@/components/Expertise";
 import Brands from "@/components/Brands";
+import Kinetic from "@/components/Kinetic";
 import { RENDERS, localRender } from "@/lib/renders";
 import { SECTIONS, splitBySection, type SectionSlug } from "@/lib/sections";
 import type { Product } from "@/lib/types";
@@ -79,6 +80,9 @@ export default async function HomePage() {
       {/* ===== 03 · OUR EXPERTISE (four verticals) ===== */}
       <Expertise />
 
+      {/* scroll-driven kinetic type — the brand line at architectural scale */}
+      <Kinetic text="Light, engineered to disappear" speed={0.5} />
+
       {/* ===== 04 · INDOOR / OUTDOOR APPLICATIONS ===== */}
       <section className="section apps">
         <div className="wrap">
@@ -96,7 +100,9 @@ export default async function HomePage() {
               const models = sectionModels(s);
               return (
                 <Link href={`/products/${s}`} className="app-tile reveal" key={s}>
-                  <Image src={def.banner} alt={def.bannerAlt} fill quality={80} sizes="(max-width:880px) 100vw, 50vw" />
+                  <div className="plx-media" data-plx="0.12" data-plx-clamp="0.08">
+                    <Image src={def.banner} alt={def.bannerAlt} fill quality={80} sizes="(max-width:880px) 100vw, 50vw" />
+                  </div>
                   <div className="scrim" aria-hidden />
                   <div className="app-body">
                     <div className="app-kicker">
@@ -174,6 +180,9 @@ export default async function HomePage() {
 
       {/* ===== 08 · TESTIMONIALS ===== */}
       <Testimonials />
+
+      {/* the regional footprint, in motion */}
+      <Kinetic text="Kuwait · UAE · China · Egypt" dark speed={0.65} />
 
       {/* ===== 09 · CTA ===== */}
       <section className="cta-band">
