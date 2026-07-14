@@ -76,19 +76,20 @@ export default async function Footer() {
             <ul>
               <li><Link href="/">Home</Link></li>
               <li><Link href="/products">Products</Link></li>
-              <li><Link href="/commercial">Commercial</Link></li>
-              <li><Link href="/products/indoor">Indoor Lighting</Link></li>
-              <li><Link href="/products/outdoor">Outdoor Lighting</Link></li>
+              <li><Link href="/applications">Applications</Link></li>
+              <li><Link href="/projects">Projects</Link></li>
+              <li><Link href="/manufacturing">Factory</Link></li>
+              <li><Link href="/downloads">Downloads</Link></li>
               <li><Link href="/about">About</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
 
           <div className="footer-col">
-            <h4>Markets</h4>
+            <h4>Applications</h4>
             <ul>
               {MARKETS.map((m) => (
-                <li key={m.slug}><Link href="/commercial">{m.name}</Link></li>
+                <li key={m.slug}><Link href={`/applications/${m.slug === "exterior" ? "facade-landscape" : m.slug}`}>{m.name}</Link></li>
               ))}
             </ul>
             <h4 style={{ marginTop: 24 }}>Categories</h4>

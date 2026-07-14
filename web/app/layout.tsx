@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono, Instrument_Serif } from "next/font/google";
+import { Outfit, DM_Sans, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Ambience from "@/components/Ambience";
 import { SITE_URL } from "@/lib/api";
 
-// Futuristic stack — geometric display + neutral body + mono for HUD labels.
-const display = Space_Grotesk({
+/* Architectural stack — precise display + calm body (not Inter). */
+const display = Outfit({
   subsets: ["latin"],
   variable: "--display",
   display: "swap",
 });
-const sans = Inter({
+const sans = DM_Sans({
   subsets: ["latin"],
   variable: "--sans",
   display: "swap",
@@ -22,7 +22,6 @@ const mono = JetBrains_Mono({
   variable: "--mono",
   display: "swap",
 });
-// Editorial italic — used only for the emphasised word inside big headlines.
 const serif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
@@ -31,7 +30,7 @@ const serif = Instrument_Serif({
   display: "swap",
 });
 
-export const viewport = { themeColor: "#ffffff" };
+export const viewport = { themeColor: "#ffcc00" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -131,11 +130,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="grain" aria-hidden />
         <Ambience />
         <div className="geo-banner">
-          <span className="gb-label">Sold across</span>
+          <span className="gb-label">Manufactured in China · Sold across</span>
           <span className="gb-countries">Kuwait · UAE · China · Egypt <em>(soon)</em></span>
-          <a href="http://alburhan-regional.com/" target="_blank" rel="noopener noreferrer">
-            Al-Burhan Regional Network ↗
-          </a>
+          <a href="/manufacturing">Our factory ↓</a>
         </div>
         <Header />
         <main>{children}</main>

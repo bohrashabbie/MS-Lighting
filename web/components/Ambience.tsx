@@ -15,11 +15,14 @@ import { usePathname } from "next/navigation";
 
 // Headlines that get the masked word-by-word rise.
 const SPLIT_TARGETS = [
+  ".hero-bleed h1",
+  ".factory-copy h2",
   ".intro h1",
   ".section-head h2",
   ".brands-head h2",
   ".cta-band h2",
   ".consult h3",
+  ".china-head h2",
   ".page-hero h1",
   ".fam-hero h1",
   ".sec-hero h1",
@@ -38,7 +41,7 @@ const TILT_CARDS = ".card,.cat-card,.mk-tile,.tm-card";
 const SCRAMBLE_TARGETS = ".eyebrow,.kicker,.nl-eyebrow,.fr-label,.col-label";
 
 // Cards where the cursor ring grows into a "View" badge.
-const CURSOR_VIEW = ".card,.cat-card,.app-tile,.xp-card,.mk-tile";
+const CURSOR_VIEW = ".card,.cat-card,.app-tile,.xp-card,.mk-tile,.hl-card,.pf-cat,.app-index-card,.proj-card";
 
 export default function Ambience() {
   const pathname = usePathname();
@@ -86,9 +89,15 @@ export default function Ambience() {
       }
       if (header && !reduce) {
         header.classList.toggle("scrolled", y > 10);
-        // Glide away scrolling down, glide back the moment you scroll up.
-        if (y > lastY + 6 && y > 180) header.classList.add("veiled");
-        else if (y < lastY - 4 || y <= 180) header.classList.remove("veiled");
+        // Desktop: hide on scroll-down. Mobile: keep header hovering above all sections.
+        const mobile = window.matchMedia("(max-width: 980px)").matches;
+        if (mobile) {
+          header.classList.remove("veiled");
+        } else if (y > lastY + 6 && y > 180) {
+          header.classList.add("veiled");
+        } else if (y < lastY - 4 || y <= 180) {
+          header.classList.remove("veiled");
+        }
       }
       lastY = y;
     };
@@ -277,7 +286,7 @@ export default function Ambience() {
     type Kin = { track: HTMLElement; unit: number; speed: number };
     let plx: Plx[] = [];
     let kins: Kin[] = [];
-    const hero = document.querySelector<HTMLElement>(".hero-frame");
+    const hero = document.querySelector<HTMLElement>(".hero-bleed");
     const collect = () => {
       plx = Array.from(document.querySelectorAll<HTMLElement>("[data-plx]")).map((el) => {
         const prev = el.style.transform;

@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getProduct, imageUrl, SITE_URL } from "@/lib/api";
+import { getProduct, getCategory, imageUrl, SITE_URL } from "@/lib/api";
 import { localRender } from "@/lib/renders";
+import ProductCard from "@/components/ProductCard";
 
 export const revalidate = 120;
 
@@ -46,6 +47,19 @@ export default async function ProductPage(
   const catSlug = p.category?.slug ?? "all";
 
   const keywords = (p.seo_keywords || "").split(",").map((k) => k.trim()).filter(Boolean);
+
+  const related = await getCategory(catSlug)
+    .then((d) =>
+      d.products
+        .filter((x) => x.slug !== p.slug)
+        .slice(0, 3)
+        .map((x) => ({
+          ...x,
+          category: x.category ?? p.category,
+        }))
+    )
+    .catch(() => []);
+
   const jsonLd = {
     "@context": "https://schema.org/",
     "@graph": [
@@ -92,13 +106,28 @@ export default async function ProductPage(
           <div>
             <div className="sub">{p.category?.name_en}</div>
             <h1 className="serif">{p.model_code || p.name_en}</h1>
+            <p className="factory-pill">
+              Manufactured in-house · Jiangmen, China
+            </p>
             <p className="lead">
               {p.description_en ||
                 `${p.name_en} — see the full specification sheet below for technical data, photometrics and certifications.`}
             </p>
             <div className="actions">
               <Link href={`/products/${catSlug}`} className="btn btn-ghost">← Back to {p.category?.name_en}</Link>
-              <Link href="/contact" className="btn btn-primary">Enquire</Link>
+              <Link
+                href={`/contact?model=${encodeURIComponent(p.model_code || p.name_en)}`}
+                className="btn btn-primary"
+              >
+                Request quote for this model
+              </Link>
+            </div>
+
+            <div className="cert-row" aria-label="Certifications">
+              <span>CE</span>
+              <span>RoHS</span>
+              <span>CB</span>
+              <span>SASO</span>
             </div>
 
             <div className="avail">
@@ -112,7 +141,8 @@ export default async function ProductPage(
               <p className="avail-note">
                 Sold and supported in every market of the{" "}
                 <a href="http://alburhan-regional.com/" target="_blank" rel="noopener noreferrer">Al-Burhan regional network</a>
-                {" "}— 500+ projects delivered worldwide.
+                {" "}— 500+ projects delivered worldwide.{" "}
+                <Link href="/manufacturing">See our factory</Link>.
               </p>
             </div>
 
@@ -146,6 +176,25 @@ export default async function ProductPage(
           </div>
         </div>
       </div>
+
+      {related.length > 0 && (
+        <div className="wrap related-products">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">Same family</div>
+              <h2>Related models</h2>
+            </div>
+            <Link href={`/products/${catSlug}`} className="link">
+              All {p.category?.name_en}
+            </Link>
+          </div>
+          <div className="grid grid-3">
+            {related.map((r) => (
+              <ProductCard key={r.id} product={r} />
+            ))}
+          </div>
+        </div>
+      )}
 
       <script
         type="application/ld+json"

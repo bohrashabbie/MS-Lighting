@@ -10,7 +10,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/products`, lastModified: now, priority: 0.9 },
     { url: `${SITE_URL}/products/indoor`, lastModified: now, priority: 0.85 },
     { url: `${SITE_URL}/products/outdoor`, lastModified: now, priority: 0.85 },
-    { url: `${SITE_URL}/commercial`, lastModified: now, priority: 0.85 },
+    { url: `${SITE_URL}/applications`, lastModified: now, priority: 0.85 },
+    { url: `${SITE_URL}/projects`, lastModified: now, priority: 0.8 },
+    { url: `${SITE_URL}/manufacturing`, lastModified: now, priority: 0.85 },
+    { url: `${SITE_URL}/downloads`, lastModified: now, priority: 0.7 },
+    { url: `${SITE_URL}/commercial`, lastModified: now, priority: 0.75 },
     { url: `${SITE_URL}/about`, lastModified: now, priority: 0.4 },
     { url: `${SITE_URL}/contact`, lastModified: now, priority: 0.4 },
   ];

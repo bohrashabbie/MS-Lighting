@@ -1,14 +1,14 @@
 import Link from "next/link";
-import Image from "next/image";
 import { getCategories, getCategory, getBrands } from "@/lib/api";
 import ProductCard from "@/components/ProductCard";
 import HeroVideo from "@/components/HeroVideo";
 import Testimonials from "@/components/Testimonials";
-import Expertise from "@/components/Expertise";
 import Brands from "@/components/Brands";
 import Kinetic from "@/components/Kinetic";
+import Highlights from "@/components/Highlights";
+import Portfolio from "@/components/Portfolio";
+import FactoryBand from "@/components/FactoryBand";
 import { RENDERS, localRender } from "@/lib/renders";
-import { SECTIONS, splitBySection, type SectionSlug } from "@/lib/sections";
 import type { Product } from "@/lib/types";
 
 export const revalidate = 120;
@@ -30,102 +30,44 @@ export default async function HomePage() {
   );
   const modelCount = details.reduce((n, d) => n + (d?.products.length ?? 0), 0);
 
-  // Lead the featured strip with models we hold hi-res studio renders for.
   const withRender = RENDERS
     .map((r) => allProducts.find((p) => p.model_code?.toUpperCase() === r.code))
     .filter((p): p is Product => Boolean(p));
   const others = allProducts.filter((p) => !localRender(p.model_code));
   const featured = [...withRender, ...others].slice(0, 6);
 
-  // Indoor / Outdoor application split (WAC-style)
-  const bySection = splitBySection(categories);
-  const sectionModels = (s: SectionSlug) =>
-    bySection[s].reduce((n, c) => n + (counts.get(c.slug) ?? 0), 0);
-
   return (
     <>
-      {/* ===== 01 · VIDEO BANNER (framed, contained) ===== */}
-      <section className="hero-band">
-        <div className="hero-frame">
-          <HeroVideo />
-        </div>
-      </section>
-
-      {/* ===== 02 · INTRO — the page's h1 and primary CTAs ===== */}
-      <section className="intro">
-        <div className="wrap">
-          <div className="kicker reveal">MS Lighting · Architectural LED</div>
-          <div className="intro-grid">
-            <h1 className="reveal">Light, engineered <em>to disappear.</em></h1>
-            <div className="intro-side">
-              <p className="reveal">
-                Recessed, linear, magnetic and outdoor fixtures for the
-                region&apos;s most demanding projects — built to vanish into
-                the architecture and perform for years.
-              </p>
-              <div className="cta-row reveal">
-                <Link href="/products" className="btn btn-primary">Explore the collection <Arrow /></Link>
-                <Link href="/commercial" className="btn btn-outline">Commercial projects</Link>
-              </div>
-            </div>
-          </div>
-          <div className="intro-meta reveal">
-            <span><b>Certified</b> CE · RoHS · CB · SASO</span>
-            <span><b>{modelCount || 99}</b> models · <b>{categories.length || 15}</b> families</span>
-            <span>Kuwait · UAE · China · Egypt</span>
+      <section className="hero-bleed">
+        <HeroVideo />
+        <div className="hero-veil" aria-hidden />
+        <div className="hero-content wrap">
+          <div className="hero-brand reveal">MS Lighting</div>
+          <h1 className="reveal">Light, engineered <em>to disappear.</em></h1>
+          <p className="reveal">
+            Architectural LED fixtures — manufactured in our China factory,
+            specified and supplied across Kuwait, the UAE, China and Egypt.
+          </p>
+          <div className="hero-paths reveal">
+            <Link href="/commercial" className="hero-path">
+              Professional projects
+            </Link>
+            <Link href="/products/indoor" className="hero-path">
+              Indoor lighting
+            </Link>
+            <Link href="/products/outdoor" className="hero-path">
+              Outdoor lighting
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ===== 03 · OUR EXPERTISE (four verticals) ===== */}
-      <Expertise />
+      <Highlights />
+      <Portfolio categories={categories} counts={counts} />
+      <FactoryBand />
 
-      {/* scroll-driven kinetic type — the brand line at architectural scale */}
-      <Kinetic text="Light, engineered to disappear" speed={0.5} />
+      <Kinetic text="Jiangmen · Kuwait · UAE · Egypt" speed={0.5} />
 
-      {/* ===== 04 · INDOOR / OUTDOOR APPLICATIONS ===== */}
-      <section className="section apps">
-        <div className="wrap">
-          <div className="section-head reveal">
-            <div>
-              <div className="eyebrow">Applications</div>
-              <h2>Indoor &amp; Outdoor</h2>
-            </div>
-            <Link href="/products" className="link">All products</Link>
-          </div>
-          <div className="apps-grid">
-            {(["indoor", "outdoor"] as const).map((s) => {
-              const def = SECTIONS[s];
-              const cats = bySection[s];
-              const models = sectionModels(s);
-              return (
-                <Link href={`/products/${s}`} className="app-tile reveal" key={s}>
-                  <div className="plx-media" data-plx="0.12" data-plx-clamp="0.08">
-                    <Image src={def.banner} alt={def.bannerAlt} fill quality={80} sizes="(max-width:880px) 100vw, 50vw" />
-                  </div>
-                  <div className="scrim" aria-hidden />
-                  <div className="app-body">
-                    <div className="app-kicker">
-                      {cats.length} families{models ? ` · ${models} models` : ""}
-                    </div>
-                    <h3>{def.short}</h3>
-                    <p>{def.tagline}</p>
-                    <div className="app-cats">
-                      {cats.slice(0, 5).map((c) => (
-                        <span key={c.slug}>{c.name_en}</span>
-                      ))}
-                      {cats.length > 5 && <span>+{cats.length - 5} more</span>}
-                    </div>
-                    <span className="app-cta">Explore {def.short.toLowerCase()} <Arrow /></span>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== 05 · SIGNATURE FIXTURES ===== */}
       {featured.length > 0 && (
         <section className="section dark">
           <div className="wrap">
@@ -147,7 +89,6 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ===== 06 · STATEMENT + THE NUMBERS BEHIND IT ===== */}
       <section className="statement">
         <div className="wrap">
           <div className="eyebrow reveal">The standard</div>
@@ -156,11 +97,11 @@ export default async function HomePage() {
           </p>
           <div className="st-stats">
             <div className="stat reveal">
-              <div className="num" data-count={modelCount || 120} data-suffix="+">0</div>
+              <div className="num" data-count={modelCount || 48} data-suffix="+">0</div>
               <div className="lbl">LED models</div>
             </div>
             <div className="stat reveal">
-              <div className="num" data-count={categories.length || 6}>0</div>
+              <div className="num" data-count={categories.length || 15}>0</div>
               <div className="lbl">Fixture families</div>
             </div>
             <div className="stat reveal">
@@ -175,16 +116,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== 07 · OUR BRANDS (from CMS) ===== */}
       <Brands brands={brands} />
-
-      {/* ===== 08 · TESTIMONIALS ===== */}
       <Testimonials />
-
-      {/* the regional footprint, in motion */}
       <Kinetic text="Kuwait · UAE · China · Egypt" dark speed={0.65} />
 
-      {/* ===== 09 · CTA ===== */}
       <section className="cta-band">
         <div className="wrap">
           <div className="eyebrow reveal">Let&apos;s build it</div>
