@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCategory, getCategories, SITE_URL } from "@/lib/api";
 import { sectionOf, SECTIONS } from "@/lib/sections";
+import { categoryRender } from "@/lib/renders";
 import { guideFor } from "@/lib/guide";
 import ProductCard from "@/components/ProductCard";
 import Guide from "@/components/Guide";
@@ -46,6 +48,7 @@ export default async function CategoryPage(
 
   const section = sectionOf(c.slug);
   const def = SECTIONS[section];
+  const plate = categoryRender(c.slug);
 
   // Sibling families in the same application section — the WAC-style
   // subcategory strip, minus the current family.
@@ -82,7 +85,7 @@ export default async function CategoryPage(
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* ===== FAMILY HERO — minimal, typographic ===== */}
+      {/* ===== FAMILY HERO — copy + studio plate ===== */}
       <section className="fam-hero">
         <div className="wrap">
           <div className="crumbs">
@@ -91,17 +94,30 @@ export default async function CategoryPage(
             <Link href={`/products/${section}`}>{def.short}</Link><span>/</span>
             {c.name_en}
           </div>
-          <div className="fam-head">
-            <div>
+          <div className={`fam-head${plate ? " has-plate" : ""}`}>
+            <div className="fam-copy">
               <div className="eyebrow reveal">{def.kicker}</div>
               <h1 className="reveal">{c.name_en}</h1>
               {c.description_en && <p className="fam-lede reveal">{c.description_en}</p>}
+              <div className="fam-meta reveal">
+                <span><b>{products.length}</b> {products.length === 1 ? "model" : "models"}</span>
+                <span>CE · RoHS{section === "outdoor" ? " · IP-rated" : ""}</span>
+                <span>Tap a card for full specs</span>
+              </div>
             </div>
-            <div className="fam-meta reveal">
-              <span><b>{products.length}</b> {products.length === 1 ? "model" : "models"}</span>
-              <span>CE · RoHS{section === "outdoor" ? " · IP-rated" : ""}</span>
-              <span>Tap a card for full specs</span>
-            </div>
+            {plate && (
+              <div className="fam-plate reveal" aria-hidden>
+                <Image
+                  src={plate.src}
+                  alt=""
+                  width={plate.w}
+                  height={plate.h}
+                  quality={90}
+                  priority
+                  sizes="(max-width:880px) 92vw, 42vw"
+                />
+              </div>
+            )}
           </div>
         </div>
       </section>

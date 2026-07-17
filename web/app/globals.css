@@ -176,12 +176,13 @@ main{counter-reset:sec}
 /* Fixed height (not aspect-ratio): inside a stretched flex card, aspect-ratio
    gets overridden and the plate grows. A hard height + flex:0 0 makes every
    black plate identical no matter how tall the card's text pushes it. */
-.cat-card .thumb{position:relative;flex:0 0 232px;height:232px;background:linear-gradient(180deg,#f7f7f7,#eeeeee);display:flex;align-items:center;justify-content:center;padding:24px}
+.cat-card .thumb{position:relative;flex:0 0 232px;height:232px;background:#0a0a0a;display:flex;align-items:center;justify-content:center;padding:20px;border-bottom:1px solid transparent}
 @media(max-width:980px){.cat-card .thumb{flex-basis:220px;height:220px}}
 @media(max-width:560px){.cat-card .thumb{flex-basis:260px;height:260px}}
-.cat-card .thumb img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(0,0,0,.12));transition:.5s}
-.cat-card:hover .thumb img{transform:scale(1.05)}
-.cat-card .thumb .ph{font-family:var(--display);font-size:56px;color:rgba(0,0,0,.12)}
+.cat-card .thumb img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 22px rgba(0,0,0,.35));transition:.5s}
+.cat-card:hover .thumb{border-bottom-color:var(--brand)}
+.cat-card:hover .thumb img{transform:scale(1.06)}
+.cat-card .thumb .ph{font-family:var(--display);font-size:56px;color:rgba(255,255,255,.18)}
 .cat-card .body{flex:1 1 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px;min-height:88px}
 .cat-card .body h3{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
 .cat-card .body .count{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase}
@@ -281,12 +282,19 @@ main{counter-reset:sec}
 /* ====================== FAMILY LANDING (category pages) ====================== */
 .fam-hero{background:var(--bg);padding:0 0 8px;border-bottom:1px solid var(--line)}
 .fam-head{display:grid;grid-template-columns:1fr auto;gap:26px 56px;align-items:end;padding:34px 0 42px}
-@media(max-width:880px){.fam-head{grid-template-columns:1fr;padding:26px 0 34px}}
+.fam-head.has-plate{grid-template-columns:minmax(0,1.05fr) minmax(240px,.95fr);align-items:center;gap:28px 48px;padding:28px 0 40px}
+@media(max-width:880px){
+  .fam-head,.fam-head.has-plate{grid-template-columns:1fr;padding:26px 0 34px}
+}
 .fam-hero h1{font-family:var(--display);font-size:clamp(40px,6.4vw,88px);font-weight:600;letter-spacing:-.03em;line-height:1;margin-top:16px;color:var(--ink)}
 .fam-lede{color:var(--ink-2);font-size:clamp(15px,1.4vw,17px);max-width:600px;line-height:1.75;margin-top:18px}
-.fam-meta{display:flex;flex-direction:column;gap:9px;padding-bottom:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:right}
+.fam-meta{display:flex;flex-direction:column;gap:9px;padding-bottom:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:left;margin-top:22px}
 .fam-meta b{color:var(--ink);font-weight:500}
 @media(max-width:880px){.fam-meta{flex-direction:row;flex-wrap:wrap;gap:10px 26px;text-align:left}}
+.fam-plate{position:relative;background:#0a0a0a;border:1px solid var(--line);border-radius:2px;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-lg)}
+.fam-plate img{width:100%;height:100%;object-fit:contain;padding:8% 10%;filter:drop-shadow(0 12px 28px rgba(0,0,0,.45))}
+.fam-plate::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform .45s}
+.fam-hero:hover .fam-plate::after{transform:scaleX(1)}
 .fam-related{margin-top:64px;padding-top:30px;border-top:1px solid var(--line)}
 .fr-label{display:block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
 
@@ -946,10 +954,11 @@ html.cur-off #cur-dot,html.cur-off #cur-ring{opacity:0}
 @media(max-width:560px){.pf-grid{grid-template-columns:1fr}}
 .pf-cat{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);overflow:hidden;transition:transform .35s,box-shadow .35s,border-color .35s}
 .pf-cat:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--line-2)}
-.pf-cat-thumb{height:180px;background:linear-gradient(180deg,#f7f7f7,#eeeeee);display:flex;align-items:center;justify-content:center;padding:22px}
-.pf-cat-thumb img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(0,0,0,.1));transition:transform .5s}
-.pf-cat:hover .pf-cat-thumb img{transform:scale(1.05)}
-.pf-cat-thumb .ph{font-family:var(--display);font-size:40px;color:rgba(0,0,0,.12)}
+.pf-cat-thumb{height:180px;background:#0a0a0a;display:flex;align-items:center;justify-content:center;padding:18px;border-bottom:1px solid transparent}
+.pf-cat-thumb img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(0,0,0,.35));transition:transform .5s}
+.pf-cat:hover .pf-cat-thumb{border-bottom-color:var(--brand)}
+.pf-cat:hover .pf-cat-thumb img{transform:scale(1.06)}
+.pf-cat-thumb .ph{font-family:var(--display);font-size:40px;color:rgba(255,255,255,.18)}
 .pf-cat-meta{padding:16px 18px 18px;display:flex;flex-direction:column;gap:4px}
 .pf-cat-meta h3{font-family:var(--display);font-size:17px;font-weight:600;margin:0;color:var(--ink)}
 .pf-cat-meta>span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
