@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCategory, getCategories, SITE_URL } from "@/lib/api";
+import { getCategory, getCategories, SITE_URL, imageUrl } from "@/lib/api";
 import { sectionOf, SECTIONS } from "@/lib/sections";
-import { categoryRender } from "@/lib/renders";
 import { guideFor } from "@/lib/guide";
 import ProductCard from "@/components/ProductCard";
 import Guide from "@/components/Guide";
@@ -48,7 +47,7 @@ export default async function CategoryPage(
 
   const section = sectionOf(c.slug);
   const def = SECTIONS[section];
-  const plate = categoryRender(c.slug);
+  const plateSrc = imageUrl(c.image_url);
 
   // Sibling families in the same application section — the WAC-style
   // subcategory strip, minus the current family.
@@ -94,7 +93,7 @@ export default async function CategoryPage(
             <Link href={`/products/${section}`}>{def.short}</Link><span>/</span>
             {c.name_en}
           </div>
-          <div className={`fam-head${plate ? " has-plate" : ""}`}>
+          <div className={`fam-head${plateSrc ? " has-plate" : ""}`}>
             <div className="fam-copy">
               <div className="eyebrow reveal">{def.kicker}</div>
               <h1 className="reveal">{c.name_en}</h1>
@@ -105,13 +104,13 @@ export default async function CategoryPage(
                 <span>Tap a card for full specs</span>
               </div>
             </div>
-            {plate && (
+            {plateSrc && (
               <div className="fam-plate reveal" aria-hidden>
                 <Image
-                  src={plate.src}
+                  src={plateSrc}
                   alt=""
-                  width={plate.w}
-                  height={plate.h}
+                  width={1400}
+                  height={933}
                   quality={90}
                   priority
                   sizes="(max-width:880px) 92vw, 42vw"

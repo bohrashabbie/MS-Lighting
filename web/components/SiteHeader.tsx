@@ -72,8 +72,7 @@ export default function SiteHeader({ categories, logoSrc = "/logo.png" }: Props)
   }, []);
 
   const thumb = useCallback((c: ProductCategory) => {
-    const render = categoryRender(c.slug);
-    return render?.src || imageUrl(c.image_url);
+    return imageUrl(c.image_url) || categoryRender(c.slug)?.src;
   }, []);
 
   return (

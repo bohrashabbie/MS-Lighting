@@ -11,14 +11,16 @@ export default function CategoryCard({
   category: ProductCategory;
   count?: number;
 }) {
-  // Hi-res local studio render wins over the catalogue-scan image.
+  // CMS category image is the source of truth for family tiles.
+  // Product studio renders remain a fallback only.
+  const cms = imageUrl(category.image_url);
   const render = categoryRender(category.slug);
-  const img = render?.src || imageUrl(category.image_url);
+  const img = cms || render?.src;
   return (
     <Link href={`/products/${category.slug}`} className="cat-card">
       <div className="thumb">
         {img ? (
-          <Image src={img} alt={category.name_en} width={render?.w ?? 440} height={render?.h ?? 440} quality={92} sizes="(max-width:560px) 100vw, 25vw" />
+          <Image src={img} alt={category.name_en} width={render?.w ?? 1400} height={render?.h ?? 933} quality={92} sizes="(max-width:560px) 100vw, 25vw" />
         ) : (
           <span className="ph">{category.name_en.charAt(0)}</span>
         )}

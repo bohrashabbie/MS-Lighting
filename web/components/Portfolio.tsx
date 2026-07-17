@@ -82,8 +82,9 @@ export default function Portfolio({
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
             {filtered.map((c) => {
+              const cms = imageUrl(c.image_url);
               const render = categoryRender(c.slug);
-              const img = render?.src || imageUrl(c.image_url);
+              const img = cms || render?.src;
               const n = counts.get(c.slug);
               return (
                 <Link href={`/products/${c.slug}`} className="pf-cat" key={c.slug}>
@@ -92,8 +93,8 @@ export default function Portfolio({
                       <Image
                         src={img}
                         alt={c.name_en}
-                        width={render?.w ?? 400}
-                        height={render?.h ?? 400}
+                        width={render?.w ?? 1400}
+                        height={render?.h ?? 933}
                         quality={88}
                         sizes="(max-width:560px) 50vw, 20vw"
                       />
