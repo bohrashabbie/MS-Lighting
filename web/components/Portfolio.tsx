@@ -38,8 +38,8 @@ export default function Portfolio({
   const [tab, setTab] = useState<Tab>("indoor");
 
   const filtered = useMemo(() => {
-    // Indoor = every indoor family (including magnetic / linear / track / module).
-    // Magnetic tab is a shortcut filter for those four; Outdoor is outdoor only.
+    // Indoor = every indoor family (including magnet / linear / track / module).
+    // Magnetic & Linear = focused subset of those same families.
     if (tab === "indoor") return categories.filter((c) => sectionOf(c.slug) === "indoor");
     if (tab === "outdoor") return categories.filter((c) => sectionOf(c.slug) === "outdoor");
     return categories.filter((c) => isMagnetic(c.slug));
