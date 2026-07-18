@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getCategories, getCategory, getBrands } from "@/lib/api";
 import ProductCard from "@/components/ProductCard";
@@ -12,6 +13,28 @@ import { RENDERS, localRender } from "@/lib/renders";
 import type { Product } from "@/lib/types";
 
 export const revalidate = 120;
+
+export const metadata: Metadata = {
+  title: { absolute: "MS Lighting — Indoor & Outdoor LED Lights" },
+  description:
+    "Shop and specify indoor lights and outdoor lights from MS Lighting — architectural LED fixtures for offices, homes, façades and streets. Catalogue 2025 · Kuwait · UAE · China · Egypt.",
+  keywords: [
+    "indoor lights",
+    "outdoor lights",
+    "indoor LED lights",
+    "outdoor LED lights",
+    "LED lighting",
+    "architectural lighting",
+    "MS Lighting",
+  ],
+  openGraph: {
+    title: "MS Lighting — Indoor & Outdoor LED Lights",
+    description:
+      "Indoor lights and outdoor lights for projects — recessed, linear, magnetic, wall, street and flood LED fixtures.",
+    url: "/",
+  },
+  alternates: { canonical: "/" },
+};
 
 const Arrow = () => (
   <svg className="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -45,7 +68,7 @@ export default async function HomePage() {
           <div className="hero-brand reveal">MS Lighting</div>
           <h1 className="reveal">Light, engineered <em>to disappear.</em></h1>
           <p className="reveal">
-            Architectural LED fixtures — manufactured in our China factory,
+            Indoor lights and outdoor lights — manufactured in our China factory,
             specified and supplied across Kuwait, the UAE, China and Egypt.
           </p>
           <div className="hero-paths reveal">
@@ -53,10 +76,10 @@ export default async function HomePage() {
               Professional projects
             </Link>
             <Link href="/products/indoor" className="hero-path">
-              Indoor lighting
+              Indoor lights
             </Link>
             <Link href="/products/outdoor" className="hero-path">
-              Outdoor lighting
+              Outdoor lights
             </Link>
           </div>
         </div>

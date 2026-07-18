@@ -24,25 +24,25 @@ export interface SectionDef {
 export const SECTIONS: Record<SectionSlug, SectionDef> = {
   indoor: {
     slug: "indoor",
-    name: "Indoor Lighting",
+    name: "Indoor Lights",
     short: "Indoor",
     kicker: "Interior · Architectural",
     tagline: "Light that disappears into the architecture.",
     blurb:
-      "Recessed, surface, linear, track and magnetic systems — engineered to vanish into the ceiling and put clean, glare-free light exactly where the design needs it.",
+      "Indoor LED lights for offices, homes, retail and hospitality — recessed, surface, linear, track and magnetic systems engineered for clean, glare-free architectural light.",
     banner: asset("/banners/indoor.webp"),
-    bannerAlt: "Sculptural LED pendant washing a modern living space in warm light",
+    bannerAlt: "Indoor LED lights illuminating a modern living space with warm architectural light",
   },
   outdoor: {
     slug: "outdoor",
-    name: "Outdoor Lighting",
+    name: "Outdoor Lights",
     short: "Outdoor",
     kicker: "Façade · Landscape · Street",
     tagline: "Built for the elements, tuned for the night.",
     blurb:
-      "Wall, lawn, street and flood fixtures in sealed, IP-rated housings — shaping façades, landscapes and roadways through every season.",
+      "Outdoor LED lights for façades, landscapes and roadways — wall, lawn, street and flood fixtures in sealed, IP-rated housings built for every season.",
     banner: asset("/banners/outdoor.webp"),
-    bannerAlt: "City skyline with architectural façade lighting reflected on water at night",
+    bannerAlt: "Outdoor lights on a city skyline with architectural façade lighting at night",
   },
 };
 

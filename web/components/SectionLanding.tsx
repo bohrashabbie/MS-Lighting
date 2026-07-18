@@ -29,6 +29,20 @@ export default async function SectionLanding({ section }: { section: SectionSlug
   const rest = allProducts.filter((p) => !localRender(p.model_code));
   const featured = [...withRender, ...rest].slice(0, 6);
 
+  const sectionUrl = `${SITE_URL}/products/${section}`;
+  const seoCopy =
+    section === "indoor"
+      ? {
+          eyebrow: "Why indoor lights matter",
+          heading: "Indoor LED lights for every interior",
+          body: "MS Lighting indoor lights cover recessed down lights, surface-mounted fixtures, linear lights, track spots and magnetic systems. Specify clean, glare-free indoor lighting for offices, homes, retail floors and hospitality spaces — with full catalogue specs for each family.",
+        }
+      : {
+          eyebrow: "Why outdoor lights matter",
+          heading: "Outdoor LED lights built for the elements",
+          body: "MS Lighting outdoor lights include wall lights, lawn lights, street lights and flood lights in sealed, IP-rated housings. Shape façades, landscapes and roadways with durable outdoor lighting engineered for Gulf weather and night-time performance.",
+        };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -37,8 +51,17 @@ export default async function SectionLanding({ section }: { section: SectionSlug
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
           { "@type": "ListItem", position: 2, name: "Products", item: `${SITE_URL}/products` },
-          { "@type": "ListItem", position: 3, name: def.name },
+          { "@type": "ListItem", position: 3, name: def.name, item: sectionUrl },
         ],
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${sectionUrl}#collection`,
+        name: def.name,
+        description: def.blurb,
+        url: sectionUrl,
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: section === "indoor" ? "Indoor LED lights" : "Outdoor LED lights",
       },
       {
         "@type": "ItemList",
@@ -131,6 +154,21 @@ export default async function SectionLanding({ section }: { section: SectionSlug
         </section>
       )}
 
+      {/* ===== SEO COPY ===== */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="section-head reveal" style={{ maxWidth: 720 }}>
+            <div>
+              <div className="eyebrow">{seoCopy.eyebrow}</div>
+              <h2>{seoCopy.heading}</h2>
+              <p style={{ color: "var(--ink-2)", fontSize: 15.5, lineHeight: 1.75, marginTop: 14 }}>
+                {seoCopy.body}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== CROSS-LINK ===== */}
       <section className="sec-cross">
         <div className="inner">
@@ -140,7 +178,7 @@ export default async function SectionLanding({ section }: { section: SectionSlug
             <p>{other.tagline}</p>
           </div>
           <Link href={`/products/${other.slug}`} className="btn btn-primary">
-            Explore {other.short.toLowerCase()} <Arrow />
+            Explore {other.short.toLowerCase()} lights <Arrow />
           </Link>
         </div>
       </section>

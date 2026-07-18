@@ -9,9 +9,17 @@ import ProductFinder from "@/components/ProductFinder";
 export const revalidate = 120;
 
 export const metadata: Metadata = {
-  title: "All Products",
+  title: "All Products — Indoor & Outdoor Lights",
   description:
-    "Browse all MS Lighting LED fixture categories — indoor recessed, linear, magnet and track systems, plus outdoor wall, lawn, street and flood lighting.",
+    "Browse all MS Lighting indoor lights and outdoor lights — recessed, linear, magnet and track systems, plus wall, lawn, street and flood LED lighting.",
+  keywords: [
+    "indoor lights",
+    "outdoor lights",
+    "LED lights",
+    "LED catalogue",
+    "MS Lighting products",
+  ],
+  alternates: { canonical: "/products" },
 };
 
 export default async function ProductsPage() {
@@ -35,11 +43,11 @@ export default async function ProductsPage() {
           <div className="fam-head">
             <div>
               <div className="eyebrow reveal">The catalogue</div>
-              <h1 className="reveal">All products</h1>
+              <h1 className="reveal">Indoor &amp; outdoor lights</h1>
               <p className="fam-lede reveal">
-                Every fixture family in the collection — indoor architectural
-                systems and sealed outdoor housings, each with its full
-                specification sheet. Manufactured in-house in Jiangmen, China.
+                Every fixture family in the collection — indoor lights for
+                interiors and outdoor lights in sealed housings, each with its
+                full specification sheet. Manufactured in-house in Jiangmen, China.
               </p>
             </div>
             <div className="fam-meta reveal">

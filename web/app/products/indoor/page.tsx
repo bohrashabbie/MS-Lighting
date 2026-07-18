@@ -1,14 +1,40 @@
 import type { Metadata } from "next";
 import SectionLanding from "@/components/SectionLanding";
+import { SECTIONS } from "@/lib/sections";
 
 export const revalidate = 120;
 
+const def = SECTIONS.indoor;
+
 export const metadata: Metadata = {
-  title: "Indoor Lighting",
+  title: "Indoor Lights & Indoor LED Lighting",
   description:
-    "Indoor LED lighting by MS Lighting — recessed, surface-mounted, linear, track and magnetic fixture families engineered for clean, glare-free architectural light.",
-  keywords: "indoor lighting, recessed down light, linear light, track light, magnet light, LED, MS Lighting",
+    "Browse indoor lights from MS Lighting — recessed down lights, surface lights, linear lights, track lights and magnetic LED fixtures for offices, homes, retail and hospitality.",
+  keywords: [
+    "indoor lights",
+    "indoor LED lights",
+    "indoor lighting",
+    "recessed lights",
+    "down lights",
+    "linear lights",
+    "track lights",
+    "magnetic lights",
+    "LED indoor lights",
+    "MS Lighting",
+  ],
   alternates: { canonical: "/products/indoor" },
+  openGraph: {
+    title: "Indoor Lights | MS Lighting",
+    description: def.blurb,
+    url: "/products/indoor",
+    images: [{ url: def.banner, alt: def.bannerAlt }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Indoor Lights | MS Lighting",
+    description: def.blurb,
+    images: [def.banner],
+  },
 };
 
 export default function IndoorPage() {

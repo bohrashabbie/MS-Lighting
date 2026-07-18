@@ -135,7 +135,7 @@ export default function SiteHeader({ categories, logoSrc = "/logo.png" }: Props)
                     <div className="mega-inner">
                       <div className="mega-col">
                         <div className="mega-col-head">
-                          <span>Indoor</span>
+                          <span>Indoor lights</span>
                           <Link href="/products/indoor" onClick={() => setMegaOpen(false)}>Overview</Link>
                         </div>
                         <div className="mega-families">
@@ -164,7 +164,7 @@ export default function SiteHeader({ categories, logoSrc = "/logo.png" }: Props)
 
                       <div className="mega-col">
                         <div className="mega-col-head">
-                          <span>Outdoor</span>
+                          <span>Outdoor lights</span>
                           <Link href="/products/outdoor" onClick={() => setMegaOpen(false)}>Overview</Link>
                         </div>
                         <div className="mega-families">
@@ -290,8 +290,8 @@ export default function SiteHeader({ categories, logoSrc = "/logo.png" }: Props)
               {drawerProducts && (
                 <div className="drawer-sub">
                   <Link href="/products" onClick={() => setDrawerOpen(false)}>All products</Link>
-                  <Link href="/products/indoor" onClick={() => setDrawerOpen(false)}>Indoor</Link>
-                  <Link href="/products/outdoor" onClick={() => setDrawerOpen(false)}>Outdoor</Link>
+                  <Link href="/products/indoor" onClick={() => setDrawerOpen(false)}>Indoor lights</Link>
+                  <Link href="/products/outdoor" onClick={() => setDrawerOpen(false)}>Outdoor lights</Link>
                   {categories.slice(0, 12).map((c) => (
                     <Link key={c.slug} href={`/products/${c.slug}`} onClick={() => setDrawerOpen(false)}>
                       {c.name_en}

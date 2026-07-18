@@ -35,17 +35,46 @@ export const viewport = { themeColor: "#ffcc00" };
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "MS Lighting — Professional LED Lighting Solutions",
+    default: "MS Lighting — Indoor & Outdoor LED Lights",
     template: "%s | MS Lighting",
   },
   description:
-    "MS Lighting — recessed, surface, linear, magnetic and outdoor LED fixtures. Browse the full 2025 product range with full specifications.",
-  keywords: ["MS Lighting", "LED lighting", "down light", "recessed light", "linear light", "magnet light", "flood light"],
+    "MS Lighting supplies indoor lights and outdoor lights for projects across Kuwait, UAE, China and Egypt — recessed, surface, linear, magnetic, wall, street and flood LED fixtures. Browse the 2025 catalogue.",
+  keywords: [
+    "MS Lighting",
+    "indoor lights",
+    "outdoor lights",
+    "indoor lighting",
+    "outdoor lighting",
+    "LED lights",
+    "LED lighting",
+    "recessed lights",
+    "down lights",
+    "linear lights",
+    "track lights",
+    "magnetic lights",
+    "flood lights",
+    "street lights",
+    "wall lights",
+    "architectural lighting",
+  ],
   openGraph: {
     type: "website",
     siteName: "MS Lighting",
-    title: "MS Lighting — Professional LED Lighting Solutions",
-    description: "Browse the full MS Lighting 2025 LED product range.",
+    title: "MS Lighting — Indoor & Outdoor LED Lights",
+    description:
+      "Indoor lights and outdoor lights for architectural and project lighting — full 2025 LED catalogue with specifications.",
+    images: [{ url: "/logo.png", width: 120, height: 34, alt: "MS Lighting" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MS Lighting — Indoor & Outdoor LED Lights",
+    description:
+      "Indoor lights and outdoor lights for architectural and project lighting — full 2025 LED catalogue.",
+    images: ["/logo.png"],
+  },
+  verification: {
+    google: "A5xOOHt6IIddAinuNw3JmuTZhp_AlwuwGaWdd9Aduc8",
   },
 };
 
@@ -58,7 +87,8 @@ const orgJsonLd = {
       name: "MS Lighting",
       url: SITE_URL,
       logo: `${SITE_URL}/logo.png`,
-      description: "Professional LED lighting manufacturer and supplier — recessed, surface, linear, magnetic and outdoor fixtures.",
+      description:
+        "Professional LED lighting manufacturer and supplier of indoor lights and outdoor lights — recessed, surface, linear, magnetic, wall, street and flood fixtures.",
       areaServed: ["Kuwait", "United Arab Emirates", "China", "Egypt"],
     },
     {

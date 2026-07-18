@@ -52,8 +52,9 @@ export default async function Footer() {
               <Image src="/logo.png" alt="MS Lighting — a company of Al-Burhan Regional" width={120} height={34} className="logo-img" />
             </a>
             <p className="desc">
-              Professional LED lighting — recessed, surface, linear, magnetic and
-              outdoor fixtures, certified and built to perform. Catalogue 2025.
+              Indoor lights and outdoor lights — recessed, surface, linear, magnetic,
+              wall, street and flood LED fixtures, certified and built to perform.
+              Catalogue 2025.
             </p>
             <a href={GROUP_URL} target="_blank" rel="noopener noreferrer" className="footer-group">
               Visit Al-Burhan Regional
@@ -76,6 +77,8 @@ export default async function Footer() {
             <ul>
               <li><Link href="/">Home</Link></li>
               <li><Link href="/products">Products</Link></li>
+              <li><Link href="/products/indoor">Indoor lights</Link></li>
+              <li><Link href="/products/outdoor">Outdoor lights</Link></li>
               <li><Link href="/applications">Applications</Link></li>
               <li><Link href="/projects">Projects</Link></li>
               <li><Link href="/manufacturing">Factory</Link></li>
