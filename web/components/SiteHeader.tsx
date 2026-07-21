@@ -80,7 +80,7 @@ export default function SiteHeader({ categories, logoSrc = "/logo.png" }: Props)
       <header className={`header${megaOpen ? " mega-open" : ""}`}>
         <div className="header-inner">
           <Link href="/" aria-label="MS Lighting home" className="logo-badge">
-            <Image src={logoSrc} alt="MS Lighting" width={132} height={38} className="logo-img" priority />
+            <Image src={logoSrc} alt="MS Lighting" width={84} height={56} className="logo-img" priority />
           </Link>
           <a
             href={GROUP_URL}

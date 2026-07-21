@@ -6,7 +6,8 @@ import HeroVideo from "@/components/HeroVideo";
 import Testimonials from "@/components/Testimonials";
 import Brands from "@/components/Brands";
 import Kinetic from "@/components/Kinetic";
-import Highlights from "@/components/Highlights";
+import OurProjects from "@/components/OurProjects";
+import GlobalCompanies from "@/components/GlobalCompanies";
 import Portfolio from "@/components/Portfolio";
 import FactoryBand from "@/components/FactoryBand";
 import { RENDERS, localRender } from "@/lib/renders";
@@ -85,7 +86,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <Highlights />
+      <GlobalCompanies />
+      <OurProjects />
       <Portfolio categories={categories} counts={counts} />
       <FactoryBand />
 

@@ -9,6 +9,11 @@ import type {
   ProductCategory,
   CategoryDetail,
   SearchResult,
+  PageContent,
+  SiteSetting,
+  Country,
+  ContactInfo,
+  ProjectCategory as ProjectCategoryType,
 } from "./types";
 
 export const CMS_BASE =
@@ -63,6 +68,32 @@ export async function getBrands(): Promise<Brand[]> {
     .filter((b) => b.is_active !== false)
     .filter((b) => b.name && !/^brand\s*\d+/i.test(b.name.trim()))
     .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+}
+
+/** CMS-managed page content blocks (title/body per section) for a page_key. */
+export function getPageContents(pageKey?: string): Promise<PageContent[]> {
+  const q = pageKey ? `?page_key=${encodeURIComponent(pageKey)}` : "";
+  return getJSON<PageContent[]>(`/public/page-contents${q}`);
+}
+
+/** Global site settings as key/value pairs (company name, logo, etc.). */
+export function getSiteSettings(): Promise<SiteSetting[]> {
+  return getJSON<SiteSetting[]>("/public/settings");
+}
+
+/** The regional companies (one per country) with firm name + imagery. */
+export function getCountries(): Promise<Country[]> {
+  return getJSON<Country[]>("/public/countries");
+}
+
+/** Office / contact details, one or more rows per country. */
+export function getContactInfo(): Promise<ContactInfo[]> {
+  return getJSON<ContactInfo[]>("/public/contact-info");
+}
+
+/** Project references grouped by category (Gyms, Restaurants, …). */
+export function getProjectCategories(): Promise<ProjectCategoryType[]> {
+  return getJSON<ProjectCategoryType[]>("/public/project-categories");
 }
 
 export function getCategory(slug: string): Promise<CategoryDetail> {
