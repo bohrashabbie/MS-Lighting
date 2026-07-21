@@ -120,6 +120,50 @@ export interface ProjectCategory {
   projects: ProjectItem[];
 }
 
+export interface TeamMember {
+  id: number;
+  name_en: string;
+  name_ar?: string | null;
+  designation_en?: string | null;
+  designation_ar?: string | null;
+  quote_en?: string | null;
+  quote_ar?: string | null;
+  image_url?: string | null;
+  sort_order: number;
+  is_active: boolean;
+}
+
+export interface ServiceItem {
+  id: number;
+  service_id: number;
+  text_en: string;
+  text_ar?: string | null;
+  sort_order: number;
+  is_active: boolean;
+}
+
+export interface Service {
+  id: number;
+  title_en: string;
+  title_ar?: string | null;
+  description_en?: string | null;
+  image_url?: string | null;
+  icon?: string | null;
+  sort_order: number;
+  is_active: boolean;
+  items: ServiceItem[];
+}
+
+export interface Sector {
+  id: number;
+  name_en: string;
+  name_ar?: string | null;
+  icon?: string | null;
+  description_en?: string | null;
+  sort_order: number;
+  is_active: boolean;
+}
+
 export interface SiteSetting {
   id: number;
   key: string;

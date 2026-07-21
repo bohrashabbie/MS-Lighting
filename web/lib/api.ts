@@ -14,6 +14,9 @@ import type {
   Country,
   ContactInfo,
   ProjectCategory as ProjectCategoryType,
+  TeamMember,
+  Service,
+  Sector,
 } from "./types";
 
 export const CMS_BASE =
@@ -94,6 +97,21 @@ export function getContactInfo(): Promise<ContactInfo[]> {
 /** Project references grouped by category (Gyms, Restaurants, …). */
 export function getProjectCategories(): Promise<ProjectCategoryType[]> {
   return getJSON<ProjectCategoryType[]>("/public/project-categories");
+}
+
+/** Leadership / team members with portrait, designation and quote. */
+export function getTeam(): Promise<TeamMember[]> {
+  return getJSON<TeamMember[]>("/public/team");
+}
+
+/** "What we offer" — service groups, each with a list of bullet items. */
+export function getServices(): Promise<Service[]> {
+  return getJSON<Service[]>("/public/services");
+}
+
+/** "Sectors we serve" — the project sectors the company operates in. */
+export function getSectors(): Promise<Sector[]> {
+  return getJSON<Sector[]>("/public/sectors");
 }
 
 export function getCategory(slug: string): Promise<CategoryDetail> {

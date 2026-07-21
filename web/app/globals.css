@@ -1205,6 +1205,98 @@ html[dir=rtl] .header-actions{margin-left:0;margin-right:auto}
 /* ====================== RELATED PRODUCTS ====================== */
 .related-products{padding:56px 0 72px;border-top:1px solid var(--line);margin-top:48px}
 
+/* ====================== ABOUT PAGE ====================== */
+.page-hero h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0;color:var(--muted)}
+
+/* Story — editorial two-column: sticky heading + flowing body */
+.about-story{padding-top:96px;padding-bottom:96px}
+.about-story-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:40px 72px;align-items:start}
+@media(max-width:900px){.about-story-grid{grid-template-columns:1fr;gap:28px}}
+.about-story-aside{position:sticky;top:120px}
+@media(max-width:900px){.about-story-aside{position:static}}
+.about-story-aside .eyebrow{color:var(--muted);font-size:10.5px}
+.about-story-aside h2{margin-top:16px;font-family:var(--display);font-size:clamp(30px,3.6vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.05;color:var(--ink);max-width:11ch}
+.about-story-body p{color:var(--ink-2);font-size:16.5px;line-height:1.85;margin-bottom:20px}
+.about-story-body p:last-child{margin-bottom:0}
+.about-story-body p.lead{font-size:clamp(19px,2vw,23px);line-height:1.6;color:var(--ink);font-weight:500;letter-spacing:-.01em}
+
+/* Stats — dark band with brand numerals */
+.about-stats{background:var(--ink);color:#fff;padding:64px 0}
+.about-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:720px){.about-stats-grid{grid-template-columns:repeat(2,1fr);gap:36px 14px}}
+.about-stat{position:relative;padding-left:26px;border-left:1px solid rgba(255,255,255,.14)}
+.about-stat:first-child{padding-left:0;border-left:0}
+@media(max-width:720px){.about-stat{padding-left:0;border-left:0}}
+.as-n{font-family:var(--display);font-size:clamp(40px,5vw,60px);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--brand)}
+.as-l{margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+
+/* Vision & Mission — two contrasting cards */
+.about-vm-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.about-vm-grid{grid-template-columns:1fr}}
+.vm-card{position:relative;padding:40px;border-radius:4px;overflow:hidden}
+.vm-vision{background:var(--brand);color:#0a0a0a}
+.vm-mission{background:var(--bg-2);border:1px solid var(--line)}
+.vm-tag{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+.vm-vision .vm-tag{color:rgba(0,0,0,.55)}
+.vm-mission .vm-tag{color:var(--muted)}
+.vm-card>p{margin-top:20px;font-size:clamp(18px,1.9vw,22px);line-height:1.55;font-weight:500;letter-spacing:-.01em}
+.vm-vision>p{color:#0a0a0a}
+.vm-mission>p{color:var(--ink);font-size:16px;line-height:1.7;font-weight:400}
+.vm-mission ul{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:14px}
+.vm-mission li{display:flex;align-items:center;gap:14px;font-size:16px;font-weight:600;color:var(--ink)}
+.vm-check{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;flex-shrink:0;border-radius:50%;background:var(--ink);color:var(--brand)}
+
+/* What we offer — numbered capability cards */
+.about-offer{background:var(--bg-2)}
+.about-offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:820px){.about-offer-grid{grid-template-columns:1fr}}
+.offer-card{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:34px 32px;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s,border-color .5s}
+.offer-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--line-2)}
+.offer-num{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--brand-dk);font-weight:700}
+.offer-card h3{margin-top:10px;font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.offer-card ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:11px}
+.offer-card li{position:relative;padding-left:20px;font-size:14.5px;line-height:1.6;color:var(--ink-2)}
+.offer-card li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--brand)}
+
+/* Sectors — pill chips */
+.about-sectors-grid{display:flex;flex-wrap:wrap;gap:12px}
+.sector-chip{display:inline-flex;align-items:center;gap:11px;padding:14px 22px;background:var(--bg-2);border:1px solid var(--line);border-radius:100px;font-size:15px;font-weight:600;color:var(--ink);transition:border-color .4s,background .4s}
+.sector-chip:hover{border-color:var(--brand);background:var(--bg)}
+.sc-dot{width:8px;height:8px;border-radius:50%;background:var(--brand);flex-shrink:0}
+.about-sectors-note{margin-top:34px;max-width:760px;font-size:16px;line-height:1.8;color:var(--muted)}
+
+/* Leadership — the founder cards, warm & editorial */
+.about-team{background:var(--ink);color:#fff}
+.about-team .section-head h2{color:#fff}
+.about-team .section-head .eyebrow{color:rgba(255,255,255,.55)}
+.about-team .section-head .meta{color:rgba(255,255,255,.5)}
+.about-team-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.about-team-grid{grid-template-columns:1fr}}
+.leader-card{position:relative;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:38px;transition:border-color .5s,background .5s}
+.leader-card:hover{border-color:rgba(255,204,0,.4);background:rgba(255,255,255,.05)}
+.lc-head{display:flex;align-items:center;gap:20px}
+.lc-photo{position:relative;width:84px;height:84px;flex-shrink:0;border-radius:50%;overflow:hidden;border:2px solid rgba(255,204,0,.5)}
+.lc-img{object-fit:cover;object-position:center top}
+.lc-photo--ph{display:flex;align-items:center;justify-content:center;background:var(--brand);color:#0a0a0a;font-family:var(--display);font-size:32px;font-weight:700;border:0}
+.lc-id h3{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.01em;color:#fff}
+.lc-role{margin-top:5px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brand)}
+.lc-quote{position:relative;margin-top:26px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1)}
+.lc-mark{position:absolute;top:6px;left:-4px;font-family:var(--serif);font-size:66px;line-height:1;color:rgba(255,204,0,.28);pointer-events:none}
+.lc-quote p{position:relative;font-size:15px;line-height:1.8;color:rgba(255,255,255,.78);margin-bottom:14px}
+.lc-quote p:first-of-type{font-size:16px;color:rgba(255,255,255,.92);font-style:italic;font-family:var(--serif);letter-spacing:.01em}
+.lc-quote p:last-child{margin-bottom:0}
+
+/* Closing CTA */
+.about-cta{padding:0 0 100px}
+.about-cta-inner{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;background:var(--bg-2);border:1px solid var(--line);border-radius:6px;padding:48px 52px}
+@media(max-width:640px){.about-cta-inner{padding:36px 28px}}
+.about-cta-inner .eyebrow{color:var(--muted);font-size:10.5px}
+.about-cta-inner h2{margin-top:14px;font-family:var(--display);font-size:clamp(28px,3.4vw,42px);font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+.about-cta-btn{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;padding:16px 28px;border-radius:3px;font-weight:700;font-size:14px;letter-spacing:.02em;transition:background .35s,transform .35s,box-shadow .35s;white-space:nowrap}
+.about-cta-btn:hover{background:var(--brand);color:#0a0a0a;transform:translateY(-2px);box-shadow:var(--shadow-brand)}
+.about-cta-btn svg{transition:transform .35s}
+.about-cta-btn:hover svg{transform:translateX(4px)}
+
 /* ---------- reduced motion: light stands still ---------- */
 @media(prefers-reduced-motion:reduce){
   #progress{display:none}
