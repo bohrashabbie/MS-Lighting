@@ -88,8 +88,8 @@ export default async function HomePage() {
 
       <GlobalCompanies />
       <OurProjects />
-      <Portfolio categories={categories} counts={counts} />
       <FactoryBand />
+      <Portfolio categories={categories} counts={counts} />
 
       <Kinetic text="Jiangmen · Kuwait · UAE · Egypt" speed={0.5} />
 
