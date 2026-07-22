@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getCategories, getCategory, getBrands } from "@/lib/api";
+import { getCategories, getCategory } from "@/lib/api";
 import ProductCard from "@/components/ProductCard";
 import HeroVideo from "@/components/HeroVideo";
 import Testimonials from "@/components/Testimonials";
@@ -43,7 +43,6 @@ const Arrow = () => (
 
 export default async function HomePage() {
   const categories = await getCategories().catch(() => []);
-  const brands = await getBrands().catch(() => []);
 
   const details = await Promise.all(
     categories.map((c) => getCategory(c.slug).catch(() => null))
@@ -141,7 +140,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <Brands brands={brands} />
+      <Brands />
       <Testimonials />
       <Kinetic text="Kuwait · UAE · China · Egypt" dark speed={0.65} />
 

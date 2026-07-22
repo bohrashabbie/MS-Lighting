@@ -36,7 +36,7 @@ async function getJSON<T>(path: string, init?: RequestInit): Promise<T> {
     ...init,
   });
   if (!res.ok) throw new Error(`CMS ${path} -> ${res.status}`);
-  return res.json() as Promise<T>;
+  return (await res.json()) as T;
 }
 
 /** Resolve a stored image path to a fully-qualified URL. */

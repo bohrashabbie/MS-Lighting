@@ -1,57 +1,49 @@
-import Image from "next/image";
-import type { Brand } from "@/lib/api";
+import { COMPONENT_BRANDS } from "@/lib/componentBrands";
 
 /**
- * "One vision, many brands" — MS Lighting leads, partner brands follow, in an
- * infinite marquee (pure CSS, pauses on hover, static wrap under reduced
- * motion). Logos come from the CMS; MS Lighting is the local mark. Plain
- * <img> is used for the remote logos because their intrinsic sizes and
- * formats vary.
+ * "Built with the world's best" — the tier-one LED chip and driver brands MS
+ * Lighting engineers its fixtures around, split into two labelled groups. Real
+ * brand marks are served locally from /public/brands and rendered greyscale so
+ * the wall reads as one system, colourising on hover. Brands without a hosted
+ * logo fall back to a clean typographic wordmark. Plain <img> is used for the
+ * logos because their intrinsic sizes and formats vary.
  */
-function Row({ brands, hidden }: { brands: Brand[]; hidden?: boolean }) {
-  return (
-    <div className="bm-row" aria-hidden={hidden || undefined}>
-      <div className="brand-card lead">
-        <Image src="/logo.png" alt={hidden ? "" : "MS Lighting"} width={150} height={44} className="brand-logo" />
-        <span className="brand-tag">House brand</span>
-      </div>
-      {brands.map((b) => (
-        <div className="brand-card" key={b.id}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={b.logo_url} alt={hidden ? "" : b.name.trim()} className="brand-logo" loading="lazy" />
-          <span className="brand-name">{b.name.trim()}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export default function Brands({ brands }: { brands: Brand[] }) {
-  if (!brands.length) return null;
-  const total = brands.length + 1; // + MS Lighting
-
+export default function Brands() {
   return (
     <section className="brands">
       <div className="wrap">
         <div className="brands-head reveal">
-          <div className="eyebrow">Our brands</div>
+          <div className="eyebrow">Our components</div>
           <h2>
-            One vision. <em>{total} brands.</em>
+            Built with the <em>world&apos;s best.</em>
           </h2>
           <p>
-            MS Lighting leads a curated network of specialist lighting ateliers —
-            bringing design sophistication and technical depth to every project we
-            supply across the region.
+            Every MS Lighting fixture is engineered around tier-one LED chips and
+            drivers — the same components trusted across architectural and
+            professional lighting worldwide.
           </p>
         </div>
-      </div>
 
-      <div className="brands-marquee reveal">
-        {/* the track is two identical rows; -50% translate loops seamlessly */}
-        <div className="bm-track" style={{ animationDuration: `${Math.max(26, total * 7)}s` }}>
-          <Row brands={brands} />
-          <Row brands={brands} hidden />
-        </div>
+        {COMPONENT_BRANDS.map((group) => (
+          <div className="brand-group reveal" key={group.label}>
+            <div className="brand-group-label">{group.label}</div>
+            <div className="brands-grid">
+              {group.brands.map((b) => (
+                <div className="brand-card" key={group.label + b.name}>
+                  {b.logo ? (
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={b.logo} alt={b.name} className="brand-logo" loading="lazy" />
+                      <span className="brand-name">{b.name}</span>
+                    </>
+                  ) : (
+                    <span className="brand-word">{b.name}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

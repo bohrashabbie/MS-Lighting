@@ -587,11 +587,14 @@ main{counter-reset:sec}
 .brand-card{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;aspect-ratio:4/3;background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 22px;box-shadow:var(--shadow);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s,border-color .4s}
 .brand-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--line-2)}
 .brand-card.lead{background:var(--ink)}
-.brand-logo{max-width:74%;max-height:56px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.72;transition:filter .35s,opacity .35s}
-.brand-card:hover .brand-logo{filter:grayscale(0);opacity:1}
-.brand-card.lead .brand-logo{filter:none;opacity:1}
+.brand-logo{max-width:74%;max-height:56px;width:auto;height:auto;object-fit:contain}
 .brand-name,.brand-tag{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .brand-card.lead .brand-tag{color:rgba(255,255,255,.55)}
+/* Component-brand groups (LED chips / drivers) */
+.brand-group{margin-top:46px}
+.brand-group:first-of-type{margin-top:38px}
+.brand-group-label{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+.brand-word{font-family:var(--display);font-size:clamp(15px,1.7vw,21px);font-weight:600;letter-spacing:-.01em;text-align:center;color:var(--ink)}
 
 /* ====================== OUR EXPERTISE ====================== */
 /* a faint pool of warm light washes down the band, like a wall under a downlight */
