@@ -254,3 +254,7 @@ Thumbs.db
 # Stray source media dropped in the repo root (originals live in the asset library)
 /*.mp4
 /*.png
+
+# Source documents (certificates & brochures) — hosted on S3, not in git
+/certs/
+/certification/

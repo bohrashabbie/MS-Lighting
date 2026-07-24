@@ -76,11 +76,12 @@ export default async function AboutPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="page-hero">
+      <section className="page-hero about-hero">
         <div className="inner">
           <div className="eyebrow">Our story</div>
           <h1 className="serif">
-            Illuminating spaces for <em>over two decades</em>
+            <span className="lumen">Illuminating</span> spaces for{" "}
+            <em>over two decades</em>
           </h1>
           <p>
             MS Lighting is part of the Al-Burhan Group — a family of lighting
@@ -88,6 +89,49 @@ export default async function AboutPage() {
             Kuwait, the UAE, China and Egypt.
           </p>
         </div>
+        <svg
+          className="about-hero-art"
+          viewBox="0 0 520 420"
+          fill="none"
+          preserveAspectRatio="xMaxYMax meet"
+          aria-hidden
+        >
+          <defs>
+            <pattern id="win" width="16" height="22" patternUnits="userSpaceOnUse">
+              <rect x="3" y="4" width="9" height="13" fill="rgba(255,196,107,.10)" />
+            </pattern>
+            <radialGradient id="cityGlow" cx="50%" cy="100%" r="70%">
+              <stop offset="0%" stopColor="rgba(255,196,107,.5)" />
+              <stop offset="55%" stopColor="rgba(255,196,107,.12)" />
+              <stop offset="100%" stopColor="rgba(255,196,107,0)" />
+            </radialGradient>
+          </defs>
+          {/* warm ground glow pooling under the skyline */}
+          <ellipse className="glow" cx="260" cy="420" rx="240" ry="150" fill="url(#cityGlow)" />
+          {/* tower masses — gold line-art filled with a faint window grid */}
+          <g stroke="rgba(255,196,107,.32)" strokeWidth="1.3">
+            <rect x="40" y="150" width="86" height="270" fill="url(#win)" />
+            <rect x="150" y="60" width="104" height="360" fill="url(#win)" />
+            <rect x="286" y="190" width="74" height="230" fill="url(#win)" />
+            <rect x="384" y="120" width="96" height="300" fill="url(#win)" />
+            <line x1="202" y1="60" x2="202" y2="30" />
+            <circle cx="202" cy="26" r="2.4" fill="rgba(255,214,150,.9)" stroke="none" />
+          </g>
+          {/* a scatter of lit windows that breathe warm */}
+          <g fill="rgba(255,214,150,.9)" stroke="none">
+            <rect className="lit" x="60" y="216" width="9" height="13" style={{ animationDelay: "0s" }} />
+            <rect className="lit" x="92" y="326" width="9" height="13" style={{ animationDelay: "1.1s" }} />
+            <rect className="lit" x="170" y="114" width="9" height="13" style={{ animationDelay: "0.5s" }} />
+            <rect className="lit" x="202" y="180" width="9" height="13" style={{ animationDelay: "1.8s" }} />
+            <rect className="lit" x="186" y="246" width="9" height="13" style={{ animationDelay: "0.9s" }} />
+            <rect className="lit" x="218" y="312" width="9" height="13" style={{ animationDelay: "2.3s" }} />
+            <rect className="lit" x="300" y="240" width="9" height="13" style={{ animationDelay: "1.4s" }} />
+            <rect className="lit" x="330" y="322" width="9" height="13" style={{ animationDelay: "0.3s" }} />
+            <rect className="lit" x="400" y="162" width="9" height="13" style={{ animationDelay: "2s" }} />
+            <rect className="lit" x="432" y="224" width="9" height="13" style={{ animationDelay: "0.7s" }} />
+            <rect className="lit" x="416" y="304" width="9" height="13" style={{ animationDelay: "1.6s" }} />
+          </g>
+        </svg>
       </section>
 
       {/* ── Story ────────────────────────────────────────────── */}

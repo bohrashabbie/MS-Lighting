@@ -1,8 +1,10 @@
 // ============================================================================
-// Downloads centre — catalogue PDF, family specs, certifications.
-// Paths point at public/ or CDN assets; mark `available: false` until
-// the file is uploaded so the UI can show "Coming soon".
+// Downloads centre — corporate brochure + certifications.
+// Files live in S3 under the "site/downloads" prefix and are resolved through
+// asset() (NEXT_PUBLIC_ASSET_BASE_URL), same as all other site media.
 // ============================================================================
+
+import { asset } from "./assets";
 
 export type DownloadKind = "catalogue" | "spec" | "cert" | "guide";
 
@@ -22,95 +24,63 @@ export interface DownloadItem {
 
 export const DOWNLOADS: DownloadItem[] = [
   {
-    id: "catalogue-2025",
-    title: "MS Lighting Product Catalogue 2025",
-    description: "Full fixture range — indoor, outdoor, magnetic and linear systems.",
+    id: "catalogue-2025-dark",
+    title: "Al-Burhan Corporate Brochure 2025 — Dark",
+    description: "Full company brochure and fixture range in the dark theme edition.",
     kind: "catalogue",
     ext: "PDF",
-    href: null,
-    tags: ["catalogue", "2025", "all products"],
+    href: asset("/downloads/catalogue-2025-dark.pdf"),
+    tags: ["catalogue", "brochure", "2025", "dark"],
   },
   {
-    id: "cert-ce",
-    title: "CE Declaration of Conformity",
-    description: "EU safety, health and electromagnetic compatibility declaration.",
+    id: "catalogue-2025-light",
+    title: "Al-Burhan Corporate Brochure 2025 — Light",
+    description: "Full company brochure and fixture range in the light theme edition.",
+    kind: "catalogue",
+    ext: "PDF",
+    href: asset("/downloads/catalogue-2025-light.pdf"),
+    tags: ["catalogue", "brochure", "2025", "light"],
+  },
+  {
+    id: "cert-ce-lvd-2-1",
+    title: "CE — LVD EN 60598-2-1 (Fixed Luminaires)",
+    description: "Low Voltage Directive safety certificate for fixed general-purpose LED luminaires.",
     kind: "cert",
     ext: "PDF",
-    href: null,
-    tags: ["CE", "certification", "export"],
+    href: asset("/downloads/certs/ce-lvd-en-60598-2-1.pdf"),
+    tags: ["CE", "LVD", "EN 60598-2-1", "certification", "export"],
+  },
+  {
+    id: "cert-ce-lvd-2-2",
+    title: "CE — LVD EN 60598-2-2 (Recessed Luminaires)",
+    description: "Low Voltage Directive safety certificate for recessed LED luminaires.",
+    kind: "cert",
+    ext: "PDF",
+    href: asset("/downloads/certs/ce-lvd-en-60598-2-2.pdf"),
+    tags: ["CE", "LVD", "EN 60598-2-2", "certification", "export"],
+  },
+  {
+    id: "cert-emc",
+    title: "CE — EMC EN 55015 / EN 61547",
+    description: "Electromagnetic compatibility certificate for LED lighting equipment.",
+    kind: "cert",
+    ext: "PDF",
+    href: asset("/downloads/certs/emc-en-55015-61547.pdf"),
+    tags: ["CE", "EMC", "EN 55015", "EN 61547", "certification"],
   },
   {
     id: "cert-rohs",
-    title: "RoHS Compliance Statement",
+    title: "RoHS Compliance Certificate",
     description: "Restriction of Hazardous Substances compliance for LED fixtures.",
     kind: "cert",
     ext: "PDF",
-    href: null,
+    href: asset("/downloads/certs/rohs.pdf"),
     tags: ["RoHS", "certification"],
-  },
-  {
-    id: "cert-cb",
-    title: "CB Scheme Test Summary",
-    description: "IECEE CB Scheme coverage for international market access.",
-    kind: "cert",
-    ext: "PDF",
-    href: null,
-    tags: ["CB", "certification"],
-  },
-  {
-    id: "cert-saso",
-    title: "SASO / Gulf Conformity Overview",
-    description: "Saudi and Gulf import documentation pathway for project shipments.",
-    kind: "cert",
-    ext: "PDF",
-    href: null,
-    tags: ["SASO", "Gulf", "certification"],
-  },
-  {
-    id: "spec-recessed-down",
-    title: "Recessed Down Light — Family Spec Sheet",
-    description: "Technical data, cutouts and photometrics for the recessed down light range.",
-    kind: "spec",
-    ext: "PDF",
-    href: null,
-    family: "recessed-down-light",
-    tags: ["spec", "indoor", "recessed"],
-  },
-  {
-    id: "spec-magnet",
-    title: "Magnet Light — Family Spec Sheet",
-    description: "Low-voltage magnetic track modules, optics and mounting options.",
-    kind: "spec",
-    ext: "PDF",
-    href: null,
-    family: "magnet-light",
-    tags: ["spec", "indoor", "magnetic"],
-  },
-  {
-    id: "spec-flood",
-    title: "Flood Light — Family Spec Sheet",
-    description: "IP-rated flood fixtures for façade, area and landscape lighting.",
-    kind: "spec",
-    ext: "PDF",
-    href: null,
-    family: "flood-light",
-    tags: ["spec", "outdoor", "flood"],
-  },
-  {
-    id: "oem-odm-guide",
-    title: "OEM / ODM Capability Brief",
-    description: "Custom finishes, private label and project-specific tooling from Jiangmen.",
-    kind: "guide",
-    ext: "PDF",
-    href: null,
-    tags: ["OEM", "ODM", "factory", "China"],
   },
 ];
 
 export const DOWNLOAD_KINDS: { id: DownloadKind | "all"; label: string }[] = [
   { id: "all", label: "All" },
   { id: "catalogue", label: "Catalogue" },
-  { id: "spec", label: "Spec sheets" },
   { id: "cert", label: "Certifications" },
-  { id: "guide", label: "Guides" },
 ];
