@@ -29,18 +29,6 @@ export default async function Footer() {
     <footer className="footer">
       <div className="hair" />
       <div className="footer-inner">
-        {/* Newsletter */}
-        <div className="newsletter">
-          <div className="nl-copy">
-            <div className="nl-eyebrow">Stay illuminated</div>
-            <h3 className="serif">Lighting insights & new releases</h3>
-            <p>Catalogue updates, project lighting ideas and product news.</p>
-          </div>
-          <div className="nl-form">
-            <input type="email" placeholder="your@email.com" aria-label="Email" />
-          </div>
-        </div>
-
         {/* Main grid */}
         <div className="footer-grid">
           <div className="footer-col footer-brand">
@@ -96,6 +84,7 @@ export default async function Footer() {
               {cats.slice(0, 5).map((c) => (
                 <li key={c.slug}><Link href={`/products/${c.slug}`}>{c.name_en}</Link></li>
               ))}
+              <li><Link href="/products" className="footer-viewmore">View more →</Link></li>
             </ul>
           </div>
 
