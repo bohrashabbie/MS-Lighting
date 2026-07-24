@@ -91,10 +91,10 @@ export default async function Footer() {
           <div className="footer-col">
             <h4>Our Presence</h4>
             {presence.map((p) => (
-              <div className="presence-card" key={p.name}>
+              <a className="presence-card" key={p.name} href={GROUP_URL} target="_blank" rel="noopener noreferrer">
                 <div className="pc-name">{p.name}</div>
                 <div className="pc-row">{p.icon}<span>{p.row}</span></div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

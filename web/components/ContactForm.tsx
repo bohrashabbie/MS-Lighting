@@ -29,7 +29,7 @@ export default function ContactForm() {
     setResult(null);
     setTimeout(() => {
       setSending(false);
-      setResult({ ok: true, msg: "Message sent — we'll get back to you within 24 hours." });
+      setResult({ ok: true, msg: "Message sent successfully!" });
       form.reset();
       setSubject("");
       setMessage("");
