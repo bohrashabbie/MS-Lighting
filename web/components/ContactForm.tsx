@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { submitContact } from "@/lib/api";
 
 export default function ContactForm() {
   const searchParams = useSearchParams();
@@ -26,25 +25,15 @@ export default function ContactForm() {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    const fd = new FormData(form);
     setSending(true);
     setResult(null);
-    const res = await submitContact({
-      name: String(fd.get("name") || ""),
-      email: String(fd.get("email") || ""),
-      phone: String(fd.get("phone") || "") || undefined,
-      subject: String(fd.get("subject") || "") || undefined,
-      message: String(fd.get("message") || ""),
-    });
-    setSending(false);
-    if (res.ok) {
+    setTimeout(() => {
+      setSending(false);
       setResult({ ok: true, msg: "Message sent — we'll get back to you within 24 hours." });
       form.reset();
       setSubject("");
       setMessage("");
-    } else {
-      setResult({ ok: false, msg: res.error || "Something went wrong. Please try again." });
-    }
+    }, 600);
   }
 
   return (

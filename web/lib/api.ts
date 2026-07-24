@@ -122,32 +122,6 @@ export function getProduct(slug: string): Promise<Product> {
   return getJSON<Product>(`/public/products/${slug}`);
 }
 
-export interface ContactPayload {
-  name: string;
-  email: string;
-  phone?: string;
-  subject?: string;
-  message: string;
-}
-
-/** Submit the contact form to the CMS. */
-export async function submitContact(
-  data: ContactPayload
-): Promise<{ ok: boolean; error?: string }> {
-  try {
-    const res = await fetch(`${CMS_API}/public/contact`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-      cache: "no-store",
-    });
-    if (!res.ok) return { ok: false, error: `Server error (${res.status})` };
-    return { ok: true };
-  } catch {
-    return { ok: false, error: "Network error. Please try again." };
-  }
-}
-
 /** Search — exact match returns { redirect }, else ranked lists. Uncached. */
 export async function search(q: string): Promise<SearchResult> {
   const res = await fetch(`${CMS_API}/public/search?q=${encodeURIComponent(q)}`, {

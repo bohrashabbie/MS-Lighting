@@ -21,7 +21,7 @@ export const COMPONENT_BRANDS: BrandGroup[] = [
     label: "LED Chips",
     brands: [
       { name: "Cree", logo: "/brands/cree.svg" },
-      { name: "Epistar" },
+      { name: "Epistar", logo: "/brands/epistar.svg" },
       { name: "Citizen", logo: "/brands/citizen.svg" },
       { name: "Osram", logo: "/brands/osram.svg" },
       { name: "Sanan", logo: "/brands/sanan.png" },
@@ -32,13 +32,13 @@ export const COMPONENT_BRANDS: BrandGroup[] = [
   {
     label: "Drivers",
     brands: [
-      { name: "Meanwell" },
-      { name: "Lifud" },
-      { name: "Eaglerise" },
+      { name: "Meanwell", logo: "/brands/meanwell.svg" },
+      { name: "Lifud", logo: "/brands/lifud.svg" },
+      { name: "Eaglerise", logo: "/brands/eaglerise.svg" },
       { name: "Osram", logo: "/brands/osram.svg" },
       { name: "Philips", logo: "/brands/philips.svg" },
-      { name: "T.C.I" },
-      { name: "Tridonic" },
+      { name: "T.C.I", logo: "/brands/tci.svg" },
+      { name: "Tridonic", logo: "/brands/tridonic.svg" },
     ],
   },
 ];

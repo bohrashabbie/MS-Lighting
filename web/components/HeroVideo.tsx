@@ -13,7 +13,7 @@ import { asset } from "@/lib/assets";
  * Implementation: two stacked <video> elements. Only the active one is shown;
  * the next one is preloaded and primed so the hand-off has no black frame.
  */
-const CLIPS = ["/video/clip1.mp4", "/video/clip2.mp4"].map(asset);
+const CLIPS = ["/video/clip1.mp4", "/video/clip2-fixed.mp4"].map(asset);
 
 export default function HeroVideo() {
   const [active, setActive] = useState(0);
